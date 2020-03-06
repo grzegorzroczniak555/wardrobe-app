@@ -1,23 +1,40 @@
 .container {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    align-content: space-between;
-    position: relative;
+    justify-content: space-around;
+}
+
+#content {
+    display: block;
+    flex-direction: column;
+    align-content: space-around;
+    text-align: center;
 }
 
 .image {
-    display: block;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    margin-top: 20px;
+}
+
+.get-started-button {
+    width: fit-content;
+}
+
+.get-started-button:hover {
+    color: aqua;
+}
+
+.get-started-text {
+    font-size: 20px;
 }
 
 h1 {
+    font-family: 'Lato';
     font-size: 4rem;
+    margin-bottom: 30px;
 }
 
 h2 {
+    font-family: 'Lato';
     font-size: 3rem;
+    margin-bottom: 30px;
 }
