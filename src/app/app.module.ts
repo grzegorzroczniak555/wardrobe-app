@@ -11,6 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon'; 
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatIconModule,
     MatListModule,
     AppRoutingModule,
+    LayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
