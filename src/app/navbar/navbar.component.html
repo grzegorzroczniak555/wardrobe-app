@@ -1,18 +1,25 @@
-<mat-drawer-container class="example-container">
-    <mat-drawer #drawer fixedInViewport="false" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-        <mat-toolbar color="primary">
-            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+<mat-toolbar color="primary">
+            
+    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-  </button>
-            <span class="spacer">WardrobeApp</span>
-            <i class="material-icons">calendar_today</i>
-            <a mat-list-item href="#">Calendar</a>
-            <i class="material-icons">assignment</i>
-            <a mat-list-item href="#">About us</a>
-            <div class="user">
-                <i class="material-icons md-36">account_circle</i>
-                <a mat-list-item href="#">Name of user</a>
-            </div>
-        </mat-toolbar>
-    </mat-drawer>
-</mat-drawer-container>
+    </button>
+            
+    <span class="spacer">WardrobeApp</span>
+    
+    <div class="calendar">
+    <i class="material-icons">calendar_today</i>
+    <a mat-list-item href="#">Calendar</a>
+    </div>
+    
+    <div class="about-us">
+    <i class="material-icons">assignment</i>
+    <a mat-list-item href="#">About us</a>
+    </div>
+    
+    <div class="user">
+        <i class="material-icons md-36">account_circle</i>
+        <a mat-list-item href="#" style="line-height: 90%">Name of user</a>
+    </div>
+
+</mat-toolbar>
+
