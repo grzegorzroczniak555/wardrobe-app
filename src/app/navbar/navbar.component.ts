@@ -6,16 +6,15 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-
-  @Output()
-  evenTask = new EventEmitter<string>();
-
+@Output()
+uploaded = new EventEmitter<string>();
 
   constructor() {}
 
-  drawer.toggle() {
-    this.evenTask.emit();
-  }
 
+drawToggle(){
+  this.uploaded.emit();
+  console.log('method works');
+}
 
 }
