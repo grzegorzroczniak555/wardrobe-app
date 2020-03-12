@@ -1,13 +1,16 @@
+<app-navbar (uploaded)="drawerToggle($event)"></app-navbar>
+
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport="false" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-        <mat-toolbar class="toolbar">Menu<i class="material-icons md-36">flight</i></mat-toolbar>
-        <mat-nav-list class="nav-list">
-            <a mat-list-item href="#">Add your travel</a>
-        </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <ng-content></ng-content>
-        <!-- Add Content Here -->
+  <mat-sidenav #sidenav class="sidenav" fixedInViewport="false" 
+  [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" 
+  [opened]="(isHandset$ | async) === false">
+    <mat-toolbar class="toolbar">Menu<i class="material-icons md-36">flight</i></mat-toolbar>
+      <mat-nav-list class="nav-list">
+        <a mat-list-item href="#">Add your travel</a>
+      </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+    <!-- Add Content Here -->
     </mat-sidenav-content>
 </mat-sidenav-container>
-<app-navbar (uploaded)="drawToggle($event)"></app-navbar>

@@ -11,10 +11,8 @@ uploaded = new EventEmitter<string>();
 
   constructor() {}
 
-
-drawToggle(){
+drawerToggle() {
   this.uploaded.emit();
-  console.log('method works');
 }
 
 }
