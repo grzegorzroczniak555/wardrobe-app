@@ -1,0 +1,38 @@
+.image {
+    width: 100%;
+}
+
+.title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 50px;
+    color: darkslateblue;
+}
+
+.description {
+    font: italic 30px Georgia, serif;
+    width: 40%;
+    text-align: center;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.login-button,
+.register-button {
+    margin: 20px;
+}
+
+.login-text,
+.register-text {
+    font-size: 20px;
+}
