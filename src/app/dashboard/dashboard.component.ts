@@ -20,7 +20,7 @@ export class DashboardComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
-  drawerToggle(event) {
+  drawerToggle() {
    this.sidenav.toggle();
   }
 

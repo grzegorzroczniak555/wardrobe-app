@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-navbar',
@@ -6,13 +7,13 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-@Output()
-uploaded = new EventEmitter<string>();
+  @Output() drawerToggle = new EventEmitter<void>();
 
-  constructor() {}
+  constructor() {
+  }
 
-drawerToggle() {
-  this.uploaded.emit();
-}
+  onDrawerToggle() {
+    this.drawerToggle.emit();
+  }
 
 }
