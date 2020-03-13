@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'main-page',
+    redirectTo: 'dashboard',
     pathMatch: 'full'
   }
 ];

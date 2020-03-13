@@ -1,14 +1,13 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav class="sidenav" fixedInViewport="false"
-               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-               [mode]="(isHandset$ | async) ? 'over' : 'side'"
-               [opened]="(isHandset$ | async) === false">
-    <mat-toolbar class="toolbar">Menu<i class="material-icons md-36">flight</i></mat-toolbar>
-    <mat-nav-list class="nav-list">
-      <a mat-list-item href="#">Add your travel</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <app-navbar (drawerToggle)="drawerToggle()"></app-navbar>
-  </mat-sidenav-content>
+    <mat-sidenav #sidenav class="sidenav" fixedInViewport="false" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <mat-toolbar class="toolbar">Menu<i class="material-icons md-36">flight</i></mat-toolbar>
+        <mat-nav-list class="nav-list">
+            <a mat-list-item href="#">Add your travel</a>
+            <a mat-list-item href="#">Check your recommendation</a>
+            <a mat-list-item href="#">History of travels</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-navbar (drawerToggle)="drawerToggle()"></app-navbar>
+    </mat-sidenav-content>
 </mat-sidenav-container>
