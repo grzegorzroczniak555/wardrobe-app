@@ -14,6 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatListModule,
     AppRoutingModule,
     LayoutModule,
-    MatExpansionModule
+    MatExpansionModule,
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
