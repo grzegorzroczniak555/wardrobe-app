@@ -3,18 +3,22 @@
 }
 
 .sidenav {
-    width: 20em;
+    width: 22em;
     border-color: darkgrey;
-}
-
-.sidenav .mat-toolbar {
-    background: inherit;
 }
 
 .mat-toolbar.mat-primary {
     position: sticky;
     top: 0;
     z-index: 1;
+}
+
+.active {
+    color: blue !important;
+}
+
+#toolbar-background {
+    background-color: lightblue;
 }
 
 .nav-list a:hover {
