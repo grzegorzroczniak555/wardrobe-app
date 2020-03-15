@@ -13,8 +13,9 @@
     z-index: 1;
 }
 
-.active {
+.active-item {
     color: blue !important;
+    background-color: lightcyan !important;
 }
 
 #toolbar-background {

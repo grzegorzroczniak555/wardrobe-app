@@ -1,3 +1,4 @@
+<router-outlet></router-outlet>
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #sidenav class="sidenav" fixedInViewport="false" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
@@ -7,10 +8,9 @@
                 <mat-panel-title>TRAVEL MANAGEMENT</mat-panel-title>
             </mat-expansion-panel-header>
             <mat-nav-list class="nav-list">
-                <a mat-list-item routerLink="travels/add" routerLinkActive="active">Add your travel</a>
+                <a mat-list-item [routerLink]="['travels','add']" routerLinkActive="active-item">Add your travel</a>
                 <a mat-list-item href="#">Check your recommendation</a>
                 <a mat-list-item href="#">History of travels</a>
-                <router-outlet></router-outlet>
             </mat-nav-list>
         </mat-expansion-panel>
         <mat-expansion-panel>
@@ -22,7 +22,6 @@
                 <a mat-list-item href="#">Add new garment</a>
             </mat-nav-list>
         </mat-expansion-panel>
-
     </mat-sidenav>
     <mat-sidenav-content>
         <app-navbar (drawerToggle)="drawerToggle()"></app-navbar>

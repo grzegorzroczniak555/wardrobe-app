@@ -1,5 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
