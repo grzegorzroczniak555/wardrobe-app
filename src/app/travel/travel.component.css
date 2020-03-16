@@ -1,0 +1,12 @@
+button:focus,
+button:active:focus,
+button.active.focus {
+    outline: none !important;
+    outline-style: none !important;
+}
+
+.list-group-item {
+    border-color: navy;
+    width: 25em;
+    color: darkslategrey;
+}
