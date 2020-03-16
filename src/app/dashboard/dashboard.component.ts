@@ -12,13 +12,13 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class DashboardComponent {
   @ViewChild('sidenav') sidenav: MatSidenav;
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
-
   constructor(private breakpointObserver: BreakpointObserver) {}
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  .pipe(
+    map(result => result.matches),
+    shareReplay()
+  );
 
   drawerToggle() {
    this.sidenav.toggle();
