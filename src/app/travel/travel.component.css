@@ -10,3 +10,7 @@ button.active.focus {
     width: 25em;
     color: darkslategrey;
 }
+
+.button {
+    margin-top: 27px;
+}

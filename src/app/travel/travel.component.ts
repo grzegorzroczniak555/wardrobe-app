@@ -1,7 +1,8 @@
 import { TravelService } from './../travel.service';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Travel } from '../travel/travel';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-travel',
@@ -10,13 +11,16 @@ import { Travel } from '../travel/travel';
 })
 export class TravelComponent implements OnInit {
   travelForm = new FormGroup({
-    destination: new FormControl(''),
+    destination: new FormControl('', [
+      Validators.required,
+    ]),
     date: new FormControl(''),
   });
 
   travels: Travel[] = [];
 
-  constructor(public travelService: TravelService) { }
+  constructor(public travelService: TravelService,
+              private dialog: MatDialog ) { }
 
   ngOnInit(): void {
     this.getTravels();
@@ -38,7 +42,10 @@ export class TravelComponent implements OnInit {
         this.getTravels();
       });
     this.travelForm.reset();
-    console.log(this.travels);
+  }
+
+  openDialogWithRef(ref: TemplateRef<any>) {
+    this.dialog.open(ref);
   }
 
 }

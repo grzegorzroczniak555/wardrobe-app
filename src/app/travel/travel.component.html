@@ -7,7 +7,8 @@
 
                 <div class="d-flex flex-column mr-4">
                     <label for="text-input">Place of travel</label>
-                    <input class="form-control border-dark" type="text" placeholder="Enter city" id="text-input" maxlength="30" formControlName="destination">
+                    <input class="form-control border-dark" type="text" placeholder="Enter location" id="text-input" maxlength="30" formControlName="destination">
+                    <div class="errorMessage" *ngIf="travelForm.controls.destination.touched && !travelForm.controls.destination.valid">Place is required</div>
                 </div>
 
                 <div class="d-flex flex-column mr-4">
@@ -16,11 +17,18 @@
                 </div>
 
 
-                <button mat-mini-fab color="primary" style="font-size: 30px" type="submit" title="Add travel" class="mt-4">+</button>
+                <button mat-raised-button color="primary" type="submit" title="Add travel" class="button" (click)="openDialogWithRef(addDialog)">ADD TRAVEL</button>
             </div>
         </div>
     </form>
 </div>
+
+<ng-template #addDialog>
+    <p matDialogContent><span>Travel has been added</span></p>
+    <mat-dialog-actions align="end">
+        <button mat-button matDialogClose>OK</button>
+    </mat-dialog-actions>
+</ng-template>
 
 <h1 class="add-travel-title ml-3 mt-2 text-monospace font-weight-bold mb-4"> Your plan of travels</h1>
 <div *ngIf="travels.length === 0" class="ml-3 d-flex flex-row align-items-center">
