@@ -7,17 +7,16 @@
 
                 <div class="d-flex flex-column mr-4">
                     <label for="text-input">Place of travel</label>
-                    <input class="form-control border-dark" type="text" placeholder="Enter location" id="text-input" maxlength="30" formControlName="destination">
-                    <div class="errorMessage" *ngIf="travelForm.controls.destination.touched && !travelForm.controls.destination.valid">Place is required</div>
+                    <input class="form-control border-dark" type="text" placeholder="Enter location" id="location" name="location" maxlength="30" formControlName="destination" required minlength="1">
                 </div>
 
                 <div class="d-flex flex-column mr-4">
                     <label for="date-input">Time of travel</label>
-                    <input class="form-control border-dark" type="date" value="rrrr-mm-dd" id="date-input" formControlName="date">
+                    <input class="form-control border-dark" type="date" value="rrrr-mm-dd" id="date-input" formControlName="date" required>
                 </div>
 
 
-                <button mat-raised-button color="primary" type="submit" title="Add travel" class="button" (click)="openDialogWithRef(addDialog)">ADD TRAVEL</button>
+                <button mat-raised-button color="primary" type="submit" title="{{travelForm.invalid === true ? 'Enter place and date' : 'Add travel'}}" class="button" (click)="openDialogWithRef(addDialog)" [disabled]="travelForm.invalid">ADD TRAVEL</button>
             </div>
         </div>
     </form>

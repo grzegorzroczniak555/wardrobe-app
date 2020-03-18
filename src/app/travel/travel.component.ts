@@ -12,9 +12,11 @@ import { MatDialog } from '@angular/material/dialog';
 export class TravelComponent implements OnInit {
   travelForm = new FormGroup({
     destination: new FormControl('', [
-      Validators.required,
+      Validators.minLength(1),
     ]),
-    date: new FormControl(''),
+    date: new FormControl('', [
+      Validators.required,
+    ])
   });
 
   travels: Travel[] = [];
