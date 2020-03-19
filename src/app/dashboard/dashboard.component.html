@@ -1,7 +1,5 @@
-<router-outlet></router-outlet>
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #sidenav class="sidenav" fixedInViewport="false" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-sidenav #sidenav class="sidenav" fixedInViewport="false" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
         <mat-toolbar class="d-flex flex-row align-items-center" id="toolbar-background">MENU<i class="material-icons md-36 ml-2 mb-2">flight</i></mat-toolbar>
         <mat-expansion-panel>
             <mat-expansion-panel-header class="border border-secondary">
@@ -25,5 +23,6 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <app-navbar (drawerToggle)="drawerToggle()"></app-navbar>
+        <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

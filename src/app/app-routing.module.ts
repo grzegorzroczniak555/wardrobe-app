@@ -8,11 +8,6 @@ const routes: Routes = [
   {
     path: 'dashboard', children: [
       { path: '', pathMatch: 'full', component: DashboardComponent },
-      {
-        path: 'travels', children: [
-          { path: 'add', component: DashboardComponent },
-        ]
-      }
     ]
   },
   {
