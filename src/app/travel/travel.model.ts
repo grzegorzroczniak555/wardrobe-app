@@ -3,5 +3,6 @@ export class Travel {
 
   constructor(
     public destination: string,
-    public date: Date) {}
+    public startDate: Date,
+    public endDate: Date) {}
 }

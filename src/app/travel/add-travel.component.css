@@ -5,12 +5,10 @@ button.active.focus {
     outline-style: none !important;
 }
 
-.list-group-item {
-    border-color: navy;
-    width: 25em;
-    color: darkslategrey;
+.button {
+    width: max-content;
 }
 
-.button {
-    margin-top: 27px;
+.list-group {
+    width: max-content;
 }

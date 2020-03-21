@@ -1,4 +1,4 @@
-import { Travel } from './travel/travel';
+import { Travel } from './travel.model';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 

@@ -1,0 +1,48 @@
+<h1 class="add-travel-title ml-3 mt-2 mb-3 text-monospace font-weight-bold"> Add your travel</h1>
+
+<div class="d-flex flex-column ml-2">
+    <form [formGroup]="travelForm" (ngSubmit)="addTravel()" class="forms">
+        <div class="d-flex flex-column">
+            <div class="d-flex flex-column mb-4">
+
+                <div class="d-flex flex-column mr-4 ml-2">
+                    <mat-form-field appearance="outline" class="mb-2" style="width: 30%">
+                        <mat-label>Destination</mat-label>
+                        <input matInput placeholder="Enter location" formControlName="destination" required minlength="3" maxlength="30">
+                        <mat-error *ngIf="this.travelForm.get('destination').invalid">{{getErrorDestinationMessage()}}</mat-error>
+                    </mat-form-field>
+
+
+                    <mat-form-field appearance="outline" class="mb-2" style="width: 22%">
+                        <mat-label>Choose a start date</mat-label>
+                        <input matInput [matDatepicker]="pickerStart" formControlName="startDate" required>
+                        <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerStart></mat-datepicker>
+                        <mat-error *ngIf="this.travelForm.get('startDate').invalid">{{getErrorStartDateMessage()}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="mb-2" style="width: 22%">
+                        <mat-label>Choose a end date</mat-label>
+                        <input matInput [matDatepicker]="pickerEnd" formControlName="endDate" required>
+                        <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerEnd></mat-datepicker>
+                        <mat-error *ngIf="this.travelForm.get('endDate').invalid">{{getErrorEndDateMessage()}}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <button mat-raised-button color="primary" type="submit" title="{{travelForm.invalid === true ? 'Enter location and dates' : 'Add travel'}}" class="button" [disabled]="travelForm.invalid" (click)="openSnackBar(addMessage, action)">ADD TRAVEL</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<h1 class="add-travel-title ml-3 mt-2 text-monospace font-weight-bold mb-4"> Your plan of travels</h1>
+<div *ngIf="travels.length === 0" class="ml-3 d-flex flex-row align-items-center">
+    <p class="text-info"> List of your travel plans is empty, let's plan a travel! </p>
+    <i class="material-icons ml-1 mb-2">mood</i>
+</div>
+<ul class="list-group">
+    <li class="list-group-item ml-3 tab-content d-flex justify-content-between flex-column align-items-start" *ngFor="let travel of travels">
+        <span> Destination: <b>{{travel.destination}}</b></span><span> Start Date: <b>{{travel.startDate}}</b></span><span> End Date: <b>{{travel.endDate}}</b></span>
+    </li>
+</ul>
