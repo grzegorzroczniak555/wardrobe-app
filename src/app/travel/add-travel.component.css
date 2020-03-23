@@ -1,8 +1,8 @@
 button:focus,
 button:active:focus,
 button.active.focus {
-    outline: none !important;
-    outline-style: none !important;
+    outline: none;
+    outline-style: none;
 }
 
 .button {
@@ -10,5 +10,5 @@ button.active.focus {
 }
 
 .list-group {
-    width: max-content;
+    width: 30em;
 }

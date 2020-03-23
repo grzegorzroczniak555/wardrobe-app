@@ -1,9 +1,9 @@
 import { TravelService } from './travel.service';
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Travel } from './travel.model';
-import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-travel',
@@ -11,9 +11,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./add-travel.component.css']
 })
 export class AddTravelComponent implements OnInit {
+  @ViewChild('pickerStart') pickerStart: MatDatepicker<Date>;
   travelForm = new FormGroup({
     destination: new FormControl('', [
       Validators.minLength(3),
+      Validators.maxLength(30),
       Validators.required
     ]),
     startDate: new FormControl('', [
@@ -25,7 +27,7 @@ export class AddTravelComponent implements OnInit {
   });
 
   travels: Travel[] = [];
-  addMessage = 'Travel has been added!';
+  readonly message = 'Travel has been added!';
   action = '';
 
   constructor(public travelService: TravelService,
@@ -52,35 +54,15 @@ export class AddTravelComponent implements OnInit {
         this.getTravels();
       });
     this.travelForm.reset();
+    this.addTravelSnackBar(this.message, this.action);
   }
 
-  getErrorDestinationMessage() {
-    if (this.travelForm.get('destination').hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    if (this.travelForm.get('destination').hasError('minlength')) {
-      return 'Not a valid location';
-    }
-  }
-
-  getErrorStartDateMessage() {
-    if (this.travelForm.get('startDate').hasError('required')) {
-      return 'You must choose a date';
-    }
-  }
-
-  getErrorEndDateMessage() {
-    if (this.travelForm.get('endDate').hasError('required')) {
-      return 'You must choose a date';
-    }
-  }
-
-  openSnackBar(message: string, action: string) {
+  addTravelSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,
     });
   }
+
 }
 
 
