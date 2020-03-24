@@ -3,7 +3,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Travel } from './travel.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDatepicker } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-travel',
@@ -11,7 +10,6 @@ import { MatDatepicker } from '@angular/material/datepicker';
   styleUrls: ['./add-travel.component.css']
 })
 export class AddTravelComponent implements OnInit {
-  @ViewChild('pickerStart') pickerStart: MatDatepicker<Date>;
   travelForm = new FormGroup({
     destination: new FormControl('', [
       Validators.minLength(3),
@@ -29,9 +27,15 @@ export class AddTravelComponent implements OnInit {
   travels: Travel[] = [];
   readonly message = 'Travel has been added!';
   action = '';
+  minDate: Date;
 
   constructor(public travelService: TravelService,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar, ) {
+                const currentYear = new Date().getFullYear();
+                const currentMonth = new Date().getMonth();
+                const currentDay = new Date().getDate();
+                this.minDate = new Date(currentYear, currentMonth, currentDay);
+               }
 
   ngOnInit(): void {
     this.getTravels();
@@ -62,7 +66,6 @@ export class AddTravelComponent implements OnInit {
       duration: 2000,
     });
   }
-
 }
 
 

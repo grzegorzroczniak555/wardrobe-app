@@ -22,7 +22,7 @@
 
                     <mat-form-field appearance="outline" class="mb-2 w-25">
                         <mat-label>Choose a start date</mat-label>
-                        <input matInput [matDatepicker]="pickerStart" formControlName="startDate">
+                        <input matInput [matDatepicker]="pickerStart" formControlName="startDate" [min]="minDate">
                         <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
                         <mat-datepicker #pickerStart></mat-datepicker>
                         <mat-error *ngIf="travelForm.get('startDate').invalid && (travelForm.get('startDate').dirty || travelForm.get('startDate').touched)">
@@ -34,12 +34,15 @@
 
                     <mat-form-field appearance="outline" class="mb-2 w-25">
                         <mat-label>Choose a end date</mat-label>
-                        <input matInput [matDatepicker]="pickerEnd" formControlName="endDate">
+                        <input matInput [matDatepicker]="pickerEnd" formControlName="endDate" [min]="travelForm.get('startDate').value">
                         <mat-datepicker-toggle class="datepicker-toggle" matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
                         <mat-datepicker #pickerEnd></mat-datepicker>
                         <mat-error *ngIf="travelForm.get('endDate').invalid && (travelForm.get('endDate').dirty || travelForm.get('endDate').touched)">
                             <span *ngIf="travelForm.get('endDate').errors.required">
                               You must choose a date
+                            </span>
+                            <span *ngIf="travelForm.get('endDate').errors.matDatepickerMin">
+                              End date must be later than start date
                             </span>
                         </mat-error>
                     </mat-form-field>
