@@ -1,6 +1,6 @@
 import { TravelService } from './travel.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { Travel } from './travel.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -10,7 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./add-travel.component.css']
 })
 export class AddTravelComponent implements OnInit {
-  travelForm = new FormGroup({
+    @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
+    travelForm = new FormGroup({
     destination: new FormControl('', [
       Validators.minLength(3),
       Validators.maxLength(30),
@@ -57,7 +58,7 @@ export class AddTravelComponent implements OnInit {
       .subscribe(() => {
         this.getTravels();
       });
-    this.travelForm.reset();
+    this.formDirective.resetForm();
     this.addTravelSnackBar(this.message, this.action);
   }
 
