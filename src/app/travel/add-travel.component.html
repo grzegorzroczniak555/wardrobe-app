@@ -8,13 +8,16 @@
                 <div class="d-flex flex-column mr-4 ml-2">
                     <mat-form-field appearance="outline" class="mb-2 w-25">
                         <mat-label>Destination</mat-label>
-                        <input matInput placeholder="Enter location" formControlName="destination" maxlength="30">
+                        <input matInput placeholder="Enter location" formControlName="destination">
                         <mat-error *ngIf="travelForm.get('destination').invalid && (travelForm.get('destination').dirty || travelForm.get('destination').touched)">
                             <span *ngIf="travelForm.get('destination').errors.required">
                               You must enter a value
                             </span>
                             <span *ngIf="travelForm.get('destination').errors.minlength">
                               The minimum length of characters is 3
+                            </span>
+                            <span *ngIf="travelForm.get('destination').errors.maxlength">
+                              The maximum length of characters is 30
                             </span>
                         </mat-error>
                     </mat-form-field>

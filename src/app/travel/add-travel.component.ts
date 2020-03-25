@@ -27,7 +27,7 @@ export class AddTravelComponent implements OnInit {
 
   travels: Travel[] = [];
   readonly message = 'Travel has been added!';
-  action = '';
+  durationActivator = '';
   minDate: Date;
 
   constructor(public travelService: TravelService,
@@ -59,11 +59,11 @@ export class AddTravelComponent implements OnInit {
         this.getTravels();
       });
     this.formDirective.resetForm();
-    this.addTravelSnackBar(this.message, this.action);
+    this.addTravelSnackBar(this.message, this.durationActivator);
   }
 
-  addTravelSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
+  addTravelSnackBar(message: string, durationActivator: string) {
+    this.snackBar.open(message, durationActivator, {
       duration: 2000,
     });
   }
