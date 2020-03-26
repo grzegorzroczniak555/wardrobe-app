@@ -1,38 +1,23 @@
-.image {
-    width: 100%;
-}
-
-.title {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 50px;
-    color: darkslateblue;
-}
-
-.description {
-    font: italic 30px Georgia, serif;
-    width: 40%;
-    text-align: center;
-}
-
-.content {
+.container {
     display: flex;
-    align-items: center;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     align-content: space-between;
+    position: relative;
 }
 
-.buttons {
-    display: flex;
+.image {
+    display: block;
+    align-items: center;
     justify-content: center;
-    margin-top: 30px;
+    position: relative;
 }
 
-.login-button,
-.register-button {
-    margin: 20px;
+h1 {
+    font-size: 4rem;
 }
 
-.login-text,
-.register-text {
-    font-size: 20px;
+h2 {
+    font-size: 3rem;
 }
