@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#content {
+    display: block;
+    flex-direction: column;
+    align-content: space-around;
+    text-align: center;
+}
+
+.logo-image,
+.family-image {
+    margin-top: 20px;
+}
+
+.get-started-button {
+    width: fit-content;
+}
+
+.get-started-button:hover {
+    color: aqua;
+}
+
+.get-started-text {
+    font-size: 20px;
+}
+
+h1 {
+    font-family: 'Lato';
+    font-size: 4rem;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-family: 'Lato';
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
