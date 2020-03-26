@@ -11,7 +11,7 @@
                         <input matInput placeholder="Enter destination" formControlName="destination">
                         <mat-error *ngIf="travelForm.get('destination').invalid && (travelForm.get('destination').dirty || travelForm.get('destination').touched)">
                             <span *ngIf="travelForm.get('destination').errors.required">
-                              You must enter a value
+                              Please provide your travel destination.
                             </span>
                             <span *ngIf="travelForm.get('destination').errors.minlength">
                               The minimum length of characters is 3
