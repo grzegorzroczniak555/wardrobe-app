@@ -25,17 +25,14 @@ export class AddTravelComponent implements OnInit {
     ])
   });
 
-  travels: Travel[] = [];
   readonly message = 'Travel has been added!';
+  travels: Travel[] = [];
   durationActivator = '';
   minDate: Date;
 
   constructor(public travelService: TravelService,
               private snackBar: MatSnackBar, ) {
-                const currentYear = new Date().getFullYear();
-                const currentMonth = new Date().getMonth();
-                const currentDay = new Date().getDate();
-                this.minDate = new Date(currentYear, currentMonth, currentDay);
+              this.minDate = new Date();
                }
 
   ngOnInit(): void {
@@ -57,13 +54,13 @@ export class AddTravelComponent implements OnInit {
     this.travelService.addTravel(travel)
       .subscribe(() => {
         this.getTravels();
+        this.formDirective.resetForm();
+        this.addTravelSnackBar(this.message);
       });
-    this.formDirective.resetForm();
-    this.addTravelSnackBar(this.message, this.durationActivator);
   }
 
-  addTravelSnackBar(message: string, durationActivator: string) {
-    this.snackBar.open(message, durationActivator, {
+  addTravelSnackBar(message: string) {
+    this.snackBar.open(message, this.durationActivator, {
       duration: 2000,
     });
   }

@@ -2,6 +2,10 @@
     width: max-content;
 }
 
+.button:hover:enabled {
+    color: aqua;
+}
+
 .list-group {
-    width: 30em;
+    width: 25rem;
 }

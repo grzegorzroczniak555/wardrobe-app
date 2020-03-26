@@ -30,8 +30,11 @@
                         <mat-datepicker #pickerStart></mat-datepicker>
                         <mat-error *ngIf="travelForm.get('startDate').invalid && (travelForm.get('startDate').dirty || travelForm.get('startDate').touched)">
                             <span *ngIf="travelForm.get('startDate').errors.required">
-                            You must choose a date
-                          </span>
+                            You must choose a date.
+                            </span>
+                            <span *ngIf="travelForm.get('startDate').errors.matDatepickerMin">
+                              Start date must be on the same day or later than today's date.
+                            </span>
                         </mat-error>
                     </mat-form-field>
 
@@ -42,16 +45,16 @@
                         <mat-datepicker #pickerEnd></mat-datepicker>
                         <mat-error *ngIf="travelForm.get('endDate').invalid && (travelForm.get('endDate').dirty || travelForm.get('endDate').touched)">
                             <span *ngIf="travelForm.get('endDate').errors.required">
-                              You must choose a date
+                              You must choose a date.
                             </span>
                             <span *ngIf="travelForm.get('endDate').errors.matDatepickerMin">
-                              End date must be later than start date
+                              End date must be on the same day or later than start date.
                             </span>
                         </mat-error>
                     </mat-form-field>
                 </div>
 
-                <button mat-raised-button color="primary" type="submit" title="{{travelForm.invalid === true ? '' : 'Add travel'}}" class="button" [disabled]="travelForm.invalid">ADD TRAVEL</button>
+                <button mat-raised-button color="primary" type="submit" matTooltip="{{travelForm.invalid === true ? '' : 'Add travel'}}" class="button" [disabled]="travelForm.invalid">ADD TRAVEL</button>
             </div>
         </div>
     </form>
