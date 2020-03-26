@@ -8,7 +8,7 @@
                 <div class="d-flex flex-column mr-4 ml-2">
                     <mat-form-field appearance="outline" class="mb-2 w-25">
                         <mat-label>Destination</mat-label>
-                        <input matInput placeholder="Enter location" formControlName="destination">
+                        <input matInput placeholder="Enter destination" formControlName="destination">
                         <mat-error *ngIf="travelForm.get('destination').invalid && (travelForm.get('destination').dirty || travelForm.get('destination').touched)">
                             <span *ngIf="travelForm.get('destination').errors.required">
                               You must enter a value
