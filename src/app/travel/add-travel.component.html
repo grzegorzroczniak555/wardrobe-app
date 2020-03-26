@@ -14,7 +14,7 @@
                               Please provide your travel destination.
                             </span>
                             <span *ngIf="travelForm.get('destination').errors.minlength">
-                              The minimum length of characters is 3
+                              Destination must be longer than 3 characters.
                             </span>
                             <span *ngIf="travelForm.get('destination').errors.maxlength">
                               The maximum length of characters is 30
