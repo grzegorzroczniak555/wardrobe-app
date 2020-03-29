@@ -17,6 +17,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { CoreModule } from './core/core.module';
 
 
 @NgModule({
@@ -28,6 +31,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     HomePageComponent,
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
@@ -39,7 +43,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     LayoutModule,
     MatExpansionModule,
     RouterModule,
-    MatTooltipModule
+    MatTooltipModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

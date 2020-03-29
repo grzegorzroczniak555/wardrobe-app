@@ -10,11 +10,19 @@
     </div>
 
     <div class="buttons">
-        <button class="login-button" matTooltip="Login" mat-raised-button color="primary">
-          <span class="login-text">LOGIN</span>
+        <div *ngIf="authService.user | async; then auth else noAuth;"></div>
+        <ng-template #noAuth>
+            <button class="login-button" matTooltip="Login" mat-raised-button color="primary" (click)="onLogin()">
+              <span class="login-text">LOGIN</span>
+            </button>
+            <button class="register-button" matTooltip="Create an account" mat-raised-button color="warn">
+              <span class="register-text">REGISTER</span>
+            </button>
+        </ng-template>
+        <ng-template #auth>
+            <button class="login-button" matTooltip="Login" mat-raised-button color="primary" (click)="authService.signOut()">
+          <span class="login-text">Logout</span>
         </button>
-        <button class="register-button" matTooltip="Create an account" mat-raised-button color="warn">
-          <span class="register-text">REGISTER</span>
-        </button>
+        </ng-template>
     </div>
 </div>
