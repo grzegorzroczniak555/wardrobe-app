@@ -20,6 +20,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { CoreModule } from './core/core.module';
     MatExpansionModule,
     RouterModule,
     MatTooltipModule,
-    CoreModule
+    CoreModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

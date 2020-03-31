@@ -48,7 +48,7 @@ export class AuthService {
         this.updateUserData(credentials.user)
           .then((res) => {
             console.log('Logged in!');
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/home-page']);
           })
           .catch((err) => console.log(err));
       });

@@ -1,7 +1,6 @@
-<div class="container">
-    <img src="../assets/images/clouds.jpg" alt="clouds" height="212" class="image">
-
-    <div class="content">
+<img src="../assets/images/clouds.jpg" alt="clouds" height="212" class="image w-100">
+<div class="container d-flex flex-column align-items-center justify-content-center align-content-between">
+    <div class="content d-flex flex-column align-items-center align-content-between mb-2">
         <img src="../assets/images/logo.jpg" alt="Logo" height="100" class="logo" />
         <h1 class="title"><b> WARDROBE APP </b></h1>
         <p class="description">
@@ -9,20 +8,9 @@
         </p>
     </div>
 
-    <div class="buttons">
-        <div *ngIf="authService.user | async; then auth else noAuth;"></div>
-        <ng-template #noAuth>
-            <button class="login-button" matTooltip="Login" mat-raised-button color="primary" (click)="onLogin()">
-              <span class="login-text">LOGIN</span>
-            </button>
-            <button class="register-button" matTooltip="Create an account" mat-raised-button color="warn">
-              <span class="register-text">REGISTER</span>
-            </button>
-        </ng-template>
-        <ng-template #auth>
-            <button class="login-button" matTooltip="Login" mat-raised-button color="primary" (click)="authService.signOut()">
-          <span class="login-text">Logout</span>
+    <div>
+        <button class="login-button d-flex align-items-center mt-2" matTooltip="Login" mat-raised-button color="primary" (click)="onLogin()">
+              <span class="login-text"><img src="../assets/images/google.png" class="google mr-1 p-1"/>LOGIN</span>
         </button>
-        </ng-template>
     </div>
 </div>
