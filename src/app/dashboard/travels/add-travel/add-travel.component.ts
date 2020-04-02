@@ -1,7 +1,7 @@
-import { TravelService } from './travel.service';
+import { TravelService } from '../travel.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
-import { Travel } from './travel.model';
+import { Travel } from '../travel.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
