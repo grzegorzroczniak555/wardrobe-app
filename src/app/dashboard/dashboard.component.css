@@ -1,0 +1,31 @@
+.sidenav-container {
+    height: 100%;
+}
+
+.sidenav {
+    width: 22em;
+    border-color: darkgrey;
+}
+
+.mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.active-item {
+    color: blue !important;
+    background-color: lightcyan !important;
+}
+
+#toolbar-background {
+    background-color: lightblue;
+}
+
+.nav-list a:hover {
+    color: blue;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
+}
