@@ -4,8 +4,10 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MainPageComponent } from './main-page/main-page.component';
 
+import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -14,6 +16,7 @@ import { SharedModule } from './shared/shared.module';
     MainPageComponent
   ],
   imports: [
+    AppRoutingModule,
     DashboardModule,
     SharedModule
   ],

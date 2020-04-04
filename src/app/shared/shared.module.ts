@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 
-import {AppRoutingModule} from '../app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
@@ -12,7 +11,6 @@ import {RouterModule} from '@angular/router';
 @NgModule({
   declarations: [],
   imports: [
-    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
     CommonModule,
@@ -22,7 +20,6 @@ import {RouterModule} from '@angular/router';
     RouterModule
   ],
   exports: [
-    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
     CommonModule,
