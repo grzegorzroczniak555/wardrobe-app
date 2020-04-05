@@ -1,0 +1,11 @@
+.button {
+    width: max-content;
+}
+
+.button:hover:enabled {
+    color: aqua;
+}
+
+.list-group {
+    width: 25rem;
+}
