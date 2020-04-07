@@ -1,0 +1,74 @@
+<div class="container ml-3 mt-3">
+  <h1 class="add-travel-title ml-3 mt-2 mb-3 text-monospace font-weight-bold"> Add your travel</h1>
+
+  <div class="d-flex flex-column ml-2">
+      <form [formGroup]="travelForm" (ngSubmit)="addTravel()" class="forms">
+          <div class="d-flex flex-column">
+              <div class="d-flex flex-column mb-4">
+
+                  <div class="d-flex flex-column mr-4 ml-2">
+                      <mat-form-field appearance="outline" class="mb-2 w-25">
+                          <mat-label>Destination</mat-label>
+                          <input matInput placeholder="Enter destination" formControlName="destination">
+                          <mat-error *ngIf="travelForm.get('destination').invalid && (travelForm.get('destination').dirty || travelForm.get('destination').touched)">
+                              <span *ngIf="travelForm.get('destination').errors.required">
+                                Please provide your travel destination.
+                              </span>
+                              <span *ngIf="travelForm.get('destination').errors.minlength">
+                                Destination must be longer than 3 characters.
+                              </span>
+                              <span *ngIf="travelForm.get('destination').errors.maxlength">
+                                Maximum length is 30.
+                              </span>
+                          </mat-error>
+                      </mat-form-field>
+
+
+                      <mat-form-field appearance="outline" class="mb-2 w-25">
+                          <mat-label>Choose a start date</mat-label>
+                          <input matInput [matDatepicker]="pickerStart" formControlName="startDate" [min]="minDate">
+                          <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                          <mat-datepicker #pickerStart></mat-datepicker>
+                          <mat-error *ngIf="travelForm.get('startDate').invalid && (travelForm.get('startDate').dirty || travelForm.get('startDate').touched)">
+                              <span *ngIf="travelForm.get('startDate').errors.required">
+                              You must choose a date.
+                              </span>
+                              <span *ngIf="travelForm.get('startDate').errors.matDatepickerMin">
+                                Start date must be on the same day or later than today's date.
+                              </span>
+                          </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" class="mb-2 w-25">
+                          <mat-label>Choose a end date</mat-label>
+                          <input matInput [matDatepicker]="pickerEnd" formControlName="endDate" [min]="travelForm.get('startDate').value">
+                          <mat-datepicker-toggle class="datepicker-toggle" matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                          <mat-datepicker #pickerEnd></mat-datepicker>
+                          <mat-error *ngIf="travelForm.get('endDate').invalid && (travelForm.get('endDate').dirty || travelForm.get('endDate').touched)">
+                              <span *ngIf="travelForm.get('endDate').errors.required">
+                                You must choose a date.
+                              </span>
+                              <span *ngIf="travelForm.get('endDate').errors.matDatepickerMin">
+                                End date must be on the same day or later than start date.
+                              </span>
+                          </mat-error>
+                      </mat-form-field>
+                  </div>
+
+                  <button mat-raised-button color="primary" type="submit" matTooltip="{{travelForm.invalid === true ? '' : 'Add travel'}}" class="button ml-2" [disabled]="travelForm.invalid">ADD TRAVEL</button>
+              </div>
+          </div>
+      </form>
+  </div>
+
+  <h1 class="add-travel-title ml-3 mt-2 text-monospace font-weight-bold mb-4"> Your plan of travels</h1>
+  <div *ngIf="travels.length === 0" class="ml-3 d-flex flex-row align-items-center">
+      <p class="text-info"> List of your travel plans is empty, let's plan a travel! </p>
+      <i class="material-icons ml-1 mb-3">mood</i>
+  </div>
+  <ul class="list-group">
+      <li class="list-group-item ml-3 tab-content d-flex justify-content-between flex-column align-items-start align-content-center" *ngFor="let travel of travels">
+          <span style="flex: 1 1 auto"> Destination: <b>{{travel.destination}}</b></span><span> Start Date: <b>{{travel.startDate | date:'fullDate'}}</b></span><span> End Date: <b>{{travel.endDate | date:'fullDate'}}</b></span>
+      </li>
+  </ul>
+</div>
