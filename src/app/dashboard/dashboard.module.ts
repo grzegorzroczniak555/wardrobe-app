@@ -18,6 +18,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -25,22 +26,23 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     DashboardComponent,
     NavbarComponent
   ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    LayoutModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatExpansionModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatNativeDateModule,
-    SharedModule,
-    MatSidenavModule,
-    MatSnackBarModule,
-    MatToolbarModule
-  ]
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        LayoutModule,
+        MatDatepickerModule,
+        MatDialogModule,
+        MatExpansionModule,
+        MatIconModule,
+        MatInputModule,
+        MatListModule,
+        MatNativeDateModule,
+        SharedModule,
+        MatSidenavModule,
+        MatSnackBarModule,
+        MatToolbarModule,
+        MatMenuModule
+    ]
 })
 export class DashboardModule {
 }

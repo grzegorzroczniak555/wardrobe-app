@@ -21,7 +21,7 @@ export class DashboardComponent {
   );
 
   drawerToggle() {
-   this.sidenav.toggle();
+    this.sidenav.toggle();
   }
 
 }

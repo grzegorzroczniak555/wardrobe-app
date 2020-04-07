@@ -17,8 +17,15 @@
     </div>
 
     <div class="d-flex flex-column align-items-center ml-2">
-      <mat-icon class="md-36 mt-1">account_circle</mat-icon>
-      <a mat-list-item href="#" class="mt-2">Name of user</a>
+      <div *ngIf="authService.user | async as user" class="d-flex flex-column align-items-center text-center">
+        <button mat-button [matMenuTriggerFor]="menu" class="d-flex flex-column align-items-center">
+          <mat-icon>account_circle</mat-icon>
+          <a mat-list-item>{{user.displayName}}</a>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button class="logout-button" matTooltip="Logout" mat-menu-item (click)="authService.signOut()">Logout</button>
+        </mat-menu>
+      </div>
     </div>
   </div>
 </mat-toolbar>
