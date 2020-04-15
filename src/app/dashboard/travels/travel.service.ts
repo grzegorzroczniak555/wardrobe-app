@@ -11,7 +11,7 @@ export class TravelService {
 
   readonly COLLECTION_NAME = 'travels';
 
-  private travels: Travel[] = [];
+  private travels: Observable<Travel[]>;
   travelsCollection: AngularFirestoreCollection<Travel>;
   public userId: string;
 
@@ -23,17 +23,13 @@ export class TravelService {
     });
   }
 
-  getTravels(): Observable<Travel[]> {
-    this.travelsCollection.valueChanges()
-      .subscribe(value => {
-        this.travels = value;
-      });
-    return of(this.travels);
+  getTravels() {
+    this.travels = this.travelsCollection.valueChanges();
+    return this.travels;
   }
 
   addTravel(travel: Travel): void {
     this.travelsCollection.add(Object.assign({}, travel));
-    this.travels.push(travel);
   }
 
 }
