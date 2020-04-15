@@ -7,7 +7,9 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
 
@@ -24,6 +26,7 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     AppRoutingModule,
     CoreModule,
     DashboardModule,

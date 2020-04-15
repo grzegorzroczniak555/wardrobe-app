@@ -50,12 +50,10 @@ export class AddTravelComponent implements OnInit {
     const startDate = this.travelForm.get('startDate').value;
     const endDate = this.travelForm.get('endDate').value;
     const travel = new Travel(destination, startDate, endDate);
-    this.travelService.addTravel(travel)
-      .subscribe(() => {
-        this.getTravels();
-        this.formDirective.resetForm();
-        this.addTravelSnackBar(this.message);
-      });
+    this.travelService.addTravel(travel);
+    this.getTravels();
+    this.formDirective.resetForm();
+    this.addTravelSnackBar(this.message);
   }
 
   addTravelSnackBar(message: string) {
