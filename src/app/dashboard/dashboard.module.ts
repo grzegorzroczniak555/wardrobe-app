@@ -9,7 +9,6 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -32,7 +31,6 @@ import { MatMenuModule } from '@angular/material/menu';
         LayoutModule,
         MatDatepickerModule,
         MatDialogModule,
-        MatExpansionModule,
         MatIconModule,
         MatInputModule,
         MatListModule,

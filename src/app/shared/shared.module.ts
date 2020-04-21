@@ -4,6 +4,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
@@ -15,6 +16,7 @@ import {RouterModule} from '@angular/router';
     BrowserModule,
     CommonModule,
     MatButtonModule,
+    MatExpansionModule,
     MatTooltipModule,
     ReactiveFormsModule,
     RouterModule
@@ -24,6 +26,7 @@ import {RouterModule} from '@angular/router';
     BrowserModule,
     CommonModule,
     MatButtonModule,
+    MatExpansionModule,
     MatTooltipModule,
     ReactiveFormsModule,
     RouterModule

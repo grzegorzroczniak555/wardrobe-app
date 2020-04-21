@@ -3,7 +3,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormGroup, FormControl, Validators, FormGroupDirective} from '@angular/forms';
 import {Travel} from '../travel.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-travel',
@@ -31,7 +30,7 @@ export class AddTravelComponent implements OnInit {
   minDate: Date;
 
   constructor(public travelService: TravelService,
-              private snackBar: MatSnackBar,) {
+              private snackBar: MatSnackBar) {
     this.minDate = new Date();
   }
 
@@ -50,10 +49,10 @@ export class AddTravelComponent implements OnInit {
     const startDate = this.travelForm.get('startDate').value;
     const endDate = this.travelForm.get('endDate').value;
     const travel = new Travel(destination, startDate, endDate);
-    this.travelService.addTravel(travel);
-    this.getTravels();
-    this.formDirective.resetForm();
-    this.addTravelSnackBar(this.message);
+    this.travelService.addTravel(travel).then(() => {
+      this.formDirective.resetForm();
+      this.addTravelSnackBar(this.message);
+    });
   }
 
   addTravelSnackBar(message: string) {

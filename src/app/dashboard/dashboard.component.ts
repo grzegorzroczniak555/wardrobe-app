@@ -3,8 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
-import {TravelService} from './travels/travel.service';
-import {Travel} from './travels/travel.model';
+import { TravelService } from './travels/travel.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,8 +12,6 @@ import {Travel} from './travels/travel.model';
 })
 export class DashboardComponent {
   @ViewChild('sidenav') sidenav: MatSidenav;
-
-  travels: Travel[] = [];
 
   constructor(private breakpointObserver: BreakpointObserver,
               public travelService: TravelService) {}
@@ -27,13 +24,6 @@ export class DashboardComponent {
 
   drawerToggle() {
     this.sidenav.toggle();
-  }
-
-  getTravels() {
-    this.travelService.getTravels().
-    subscribe(travels => {
-      this.travels = travels;
-    });
   }
 
 }

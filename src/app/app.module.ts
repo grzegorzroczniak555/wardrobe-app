@@ -4,9 +4,7 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { RouterModule } from '@angular/router';
-import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule} from '@angular/fire/firestore';
@@ -32,9 +30,7 @@ import { SharedModule } from './shared/shared.module';
     DashboardModule,
     SharedModule,
     LayoutModule,
-    MatExpansionModule,
-    RouterModule,
-    MatTooltipModule
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
