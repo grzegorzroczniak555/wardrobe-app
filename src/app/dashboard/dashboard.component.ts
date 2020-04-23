@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
+import { TravelService } from './travels/travel.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class DashboardComponent {
   @ViewChild('sidenav') sidenav: MatSidenav;
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver,
+              public travelService: TravelService) {}
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(

@@ -1,30 +1,33 @@
-import { Travel } from './travel.model';
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import {AngularFirestore, AngularFirestoreCollection, DocumentReference} from '@angular/fire/firestore';
+import {Travel} from './travel.model';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {AuthService} from '../../core/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TravelService {
 
-  private travels: Travel[] = [];
+  readonly COLLECTION_NAME = 'travels';
 
-  constructor() { }
+  travelsCollection: AngularFirestoreCollection<Travel>;
+  public userId: string;
 
-private getId(min: number, max: number): number {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+  constructor(private afs: AngularFirestore,
+              private authService: AuthService) {
+    this.authService.getUser().subscribe(user => {
+      this.userId = user.uid;
+      this.travelsCollection = this.afs.collection<Travel>(`${this.COLLECTION_NAME}/${this.userId}/${this.COLLECTION_NAME}`);
+    });
+  }
 
-getTravels(): Observable<Travel[]> {
-  return of(this.travels);
-}
+  getTravels(): Observable<Travel[]> {
+    return this.afs.collection<Travel>(`${this.COLLECTION_NAME}/${this.userId}/${this.COLLECTION_NAME}`).valueChanges();
+  }
 
-addTravel(travel: Travel): Observable<Travel> {
-  travel.id = this.getId(1, 200);
-  this.travels.push(travel);
-  return of(travel);
-}
+  addTravel(travel: Travel): Promise<DocumentReference> {
+    return this.travelsCollection.add(Object.assign({}, travel));
+  }
 
 }
