@@ -1,0 +1,25 @@
+<div class="container d-flex flex-column ml-3 mt-3">
+  <h1 class="add-travel-title ml-3 mt-2 mb-3 text-monospace font-weight-bold"> Add item to wardrobe</h1>
+
+ <form [formGroup] = "itemForm" (ngSubmit)="addItem()" class="d-flex flex-column">
+  <mat-form-field class="ml-3 w-25">
+    <mat-label>Select item</mat-label>
+    <mat-select formControlName="itemControlName">
+      <mat-optgroup *ngFor="let group of itemsGroups" [label]="group.name"
+                    [disabled]="group.disabled">
+      <mat-option *ngFor="let item of group.item" [value]="item.name">
+        {{item.name}}
+      </mat-option>
+      </mat-optgroup>
+    </mat-select>
+    <mat-error *ngIf="itemForm.hasError('required')">Please choose a item</mat-error>
+  </mat-form-field>
+
+  <app-increment-input class="ml-3" [itemFormAmount]="itemFormAmount" [value]="counterValue || 0" [step]="counterStep" [min]="counterMin" [max]="counterMax"
+                       [wrap]="counterWrap"></app-increment-input>
+
+  <button mat-raised-button color="primary" type="submit" matTooltip="{{itemForm.invalid === true ? '' : 'Add items'}}" class="button ml-2 mt-3 mb-3" [disabled]="itemForm.invalid">ADD ITEMS</button>
+ </form>
+  <h1 class="add-travel-title ml-3 mt-4 mb-3 text-monospace font-weight-bold"> Your wardrobe</h1>
+
+</div>

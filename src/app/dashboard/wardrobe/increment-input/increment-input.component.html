@@ -1,0 +1,26 @@
+<form [formGroup] = "itemFormAmount">
+<mat-form-field class="mt-3">
+  <mat-label>Select amount</mat-label>
+  <button
+    mat-button
+    mat-icon-button
+    matPrefix
+    aria-label="Remove"
+    [color]="getColor()"
+    (click)="incrementValue(-counterStep)"
+    [disabled]="shouldDisableDecrement(counterValue)">
+    <mat-icon>remove</mat-icon>
+  </button>
+  <input matInput formControlName="amount" type="number" [(ngModel)]="counterValue" (focus)="setColor('primary')" (blur)="setColor('default')" />
+  <button
+    mat-button
+    mat-icon-button
+    matSuffix
+    aria-label="Add"
+    [color]="getColor()"
+    (click)="incrementValue(counterStep)"
+    [disabled]="shouldDisableIncrement(counterValue)">
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-form-field>
+</form>

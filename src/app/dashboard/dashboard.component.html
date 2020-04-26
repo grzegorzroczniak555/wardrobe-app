@@ -16,8 +16,7 @@
                 <mat-panel-title>Wardrobe management</mat-panel-title>
             </mat-expansion-panel-header>
             <mat-nav-list class="nav-list">
-                <a mat-list-item href="#">Check your wardrobe</a>
-                <a mat-list-item href="#">Add new garment</a>
+                <a mat-list-item [routerLink]="['wardrobe']" routerLinkActive="active-item">Check your wardrobe</a>
             </mat-nav-list>
         </mat-expansion-panel>
     </mat-sidenav>

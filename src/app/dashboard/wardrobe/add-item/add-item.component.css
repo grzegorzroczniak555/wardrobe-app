@@ -1,0 +1,7 @@
+.button {
+  width: max-content;
+}
+
+.button:hover:enabled {
+  color: aqua;
+}

@@ -13,7 +13,7 @@ import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 })
 export class AuthService {
 
-  readonly user: Observable<User>;
+  private readonly user: Observable<User>;
   private googleProvider: GoogleAuthProvider;
 
   constructor(private afAuth: AngularFireAuth,
