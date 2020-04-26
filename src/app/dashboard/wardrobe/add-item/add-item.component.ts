@@ -11,11 +11,7 @@ import {Item} from '../item.model';
 })
 export class AddItemComponent implements OnInit {
   itemForm = new FormGroup( {
-    itemControlName:  new FormControl('', Validators.required)
-   // itemControlAmount: new FormControl()
-  });
-
-  itemFormAmount = new FormGroup( {
+    name:  new FormControl('', Validators.required),
     amount: new FormControl()
   });
 
@@ -42,8 +38,8 @@ export class AddItemComponent implements OnInit {
   }
 
   addItem() {
-    const name = this.itemForm.get('itemControlName').value;
-    const amount = this.itemFormAmount.get('amount').value;
+    const name = this.itemForm.get('name').value;
+    const amount = this.itemForm.get('amount').value;
     const item = new Item(name, amount);
     console.log(item);
     this.itemService.addItem(item);
