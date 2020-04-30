@@ -37,12 +37,16 @@ export class AddItemComponent implements OnInit {
     });
   }
 
+  updateItem(item) {
+    this.itemService.updateItem(item);
+  }
+
   addItem() {
     const name = this.itemForm.get('name').value;
     const amount = this.itemForm.get('amount').value;
     const item = new Item(name, amount);
-    console.log(item);
-    this.itemService.addItem(item);
+    this.updateItem(item);
+    // this.itemService.addItem(item);
   }
 
 }

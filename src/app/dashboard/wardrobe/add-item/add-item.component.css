@@ -5,3 +5,7 @@
 .button:hover:enabled {
   color: aqua;
 }
+
+.list-group {
+  width: 15rem;
+}
