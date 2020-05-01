@@ -25,24 +25,21 @@ export class ItemService {
   }
 
   addItem(item: Item): Promise<DocumentReference> {
-       return this.itemsCollection.add(Object.assign({}, item));
+    return this.itemsCollection.add(Object.assign({}, item));
   }
 
-  updateItem(item: Item) {
-    this.afs.collectionGroup('item', ref => ref.where('name', '==', `${item.name}`))
-      .get().toPromise().then(snap => {
-        snap.forEach(doc => {
-            // console.log(doc.data());
-            // console.log(doc.id);
-            // console.log(snap);
-            const oldAmount = (doc.data());
-            item.amount = item.amount + oldAmount.amount;
-            this.afs.collection(`wardrobe/${this.userId}/item`).doc(doc.id).set(Object.assign({}, item));
-        });
-        this.addItem(item);
-        // this.afs.collection(`wardrobe/${this.userId}/item`).add(Object.assign({}, item));
-      });
-
+  async updateItem(item: Item) {
+    const query = this.afs.collectionGroup('item', ref => ref.where('name', '==', `${item.name}`));
+    const promise = await query.get().toPromise();
+    const docs = promise.docs;
+    if (docs.length > 0) {
+      const itemDoc = docs[0];
+      const retrievedItem = itemDoc.data() as Item;
+      retrievedItem.amount += item.amount;
+      this.afs.collection(`wardrobe/${this.userId}/item`).doc(itemDoc.id).update(Object.assign({}, retrievedItem));
+    } else {
+      this.addItem(item);
+    }
   }
 
 

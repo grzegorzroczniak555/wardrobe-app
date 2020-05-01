@@ -1,7 +1,7 @@
 <div class="container d-flex flex-column ml-3 mt-3">
   <h1 class="add-travel-title ml-3 mt-2 mb-3 text-monospace font-weight-bold"> Add item to wardrobe</h1>
 
- <form [formGroup] = "itemForm" (ngSubmit)="addItem()" class="d-flex flex-column">
+ <form [formGroup] = "itemForm" (ngSubmit)="updateItem()" class="d-flex flex-column">
   <mat-form-field class="ml-3 w-25">
     <mat-label>Select item</mat-label>
     <mat-select formControlName="name">
@@ -12,7 +12,9 @@
       </mat-option>
       </mat-optgroup>
     </mat-select>
-    <mat-error *ngIf="itemForm.hasError('required')">Please choose a item</mat-error>
+    <mat-error *ngIf="itemForm.get('name').invalid && (itemForm.get('name').dirty || itemForm.get('name').touched)">
+      <span *ngIf="itemForm.get('name').errors.required"> Please choose a item </span>
+    </mat-error>
   </mat-form-field>
 
   <app-increment-input class="ml-3" [itemFormAmount]="itemForm" [value]="counterValue || 0" [step]="counterStep" [min]="counterMin" [max]="counterMax"
