@@ -13,7 +13,7 @@
       </mat-optgroup>
     </mat-select>
     <mat-error *ngIf="itemForm.get('name').invalid && (itemForm.get('name').dirty || itemForm.get('name').touched)">
-      <span *ngIf="itemForm.get('name').errors.required"> Please choose a item </span>
+      <span *ngIf="itemForm.get('name').errors.required"> Please choose an item </span>
     </mat-error>
   </mat-form-field>
 
