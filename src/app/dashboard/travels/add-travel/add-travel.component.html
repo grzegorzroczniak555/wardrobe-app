@@ -55,7 +55,7 @@
                       </mat-form-field>
                   </div>
 
-                  <button mat-raised-button color="primary" type="submit" matTooltip="{{travelForm.invalid === true ? '' : 'Add travel'}}" class="button ml-2" [disabled]="travelForm.invalid">ADD TRAVEL</button>
+                  <button mat-raised-button color="primary" type="submit" matTooltip="{{travelForm.invalid === true ? '' : 'Add travel'}}" class="button ml-2" [disabled]="travelForm.invalid">Add Travel</button>
               </div>
           </div>
       </form>
@@ -68,7 +68,7 @@
   </div>
   <ul class="list-group">
       <li class="list-group-item ml-3 mb-3 tab-content d-flex justify-content-between flex-column align-items-start align-content-center" *ngFor="let travel of travels">
-          <span style="flex: 1 1 auto"> Destination: <b>{{travel.destination}}</b></span><span> Start Date: <b>{{travel.startDate.seconds * 1000 | date: 'fullDate'}}</b></span><span> End Date: <b>{{travel.endDate.seconds * 1000 | date: 'fullDate'}}</b></span>
+          <span> Destination: <b>{{travel.destination}}</b></span><span> Start Date: <b>{{travel.startDate.seconds * 1000 | date: 'fullDate'}}</b></span><span> End Date: <b>{{travel.endDate.seconds * 1000 | date: 'fullDate'}}</b></span>
       </li>
   </ul>
 </div>

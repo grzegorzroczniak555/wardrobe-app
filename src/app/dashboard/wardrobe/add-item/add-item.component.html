@@ -1,7 +1,7 @@
 <div class="container d-flex flex-column ml-3 mt-3">
   <h1 class="add-travel-title ml-3 mt-2 mb-3 text-monospace font-weight-bold"> Add item to wardrobe</h1>
 
- <form [formGroup] = "itemForm" (ngSubmit)="updateItem()" class="d-flex flex-column">
+ <form [formGroup] = "itemForm" (ngSubmit)="addItem()" class="d-flex flex-column">
   <mat-form-field class="ml-3 w-25">
     <mat-label>Select item</mat-label>
     <mat-select formControlName="name">
@@ -20,7 +20,7 @@
   <app-increment-input class="ml-3" [itemFormAmount]="itemForm" [value]="counterValue || 0" [step]="counterStep" [min]="counterMin" [max]="counterMax"
                        [wrap]="counterWrap"></app-increment-input>
 
-  <button mat-raised-button color="primary" type="submit" matTooltip="{{itemForm.invalid === true ? '' : 'Add items'}}" class="button ml-2 mt-3 mb-3" [disabled]="itemForm.invalid">ADD ITEMS</button>
+  <button mat-raised-button color="primary" type="submit" matTooltip="{{itemForm.invalid === true ? '' : 'Add items'}}" class="button ml-2 mt-3 mb-3" [disabled]="itemForm.invalid">Add Items</button>
  </form>
   <h1 class="add-travel-title ml-3 mt-4 mb-3 text-monospace font-weight-bold"> Your wardrobe</h1>
   <div *ngIf="items.length === 0" class="ml-3 d-flex flex-row align-items-center">
@@ -29,7 +29,7 @@
   </div>
   <ul class="list-group">
     <li class="list-group-item ml-3 mb-3 tab-content d-flex justify-content-between flex-column align-items-start align-content-center" *ngFor="let item of items">
-      <span style="flex: 1 1 auto"> Name: <b>{{item.name}}</b></span><span> Amount: <b>{{item.amount}}</b></span>
+      <span> Name: <b>{{item.name}}</b></span><span> Amount: <b>{{item.amount}}</b></span>
     </li>
   </ul>
 </div>

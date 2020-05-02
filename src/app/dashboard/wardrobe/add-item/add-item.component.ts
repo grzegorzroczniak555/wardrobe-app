@@ -11,7 +11,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./add-item.component.css']
 })
 export class AddItemComponent implements OnInit {
-  readonly message = 'Item has been added!';
+  readonly notification = 'Item has been added!';
   itemForm = new FormGroup( {
     name:  new FormControl('', Validators.required),
     amount: new FormControl()
@@ -20,11 +20,11 @@ export class AddItemComponent implements OnInit {
   itemsGroups = itemsGroups;
   items: Item[] = [];
 
-  counterValue = 1;
-  counterStep = 1;
-  counterMin = 1;
-  counterMax = Infinity;
-  counterWrap = false;
+  readonly counterValue = 1;
+  readonly counterStep = 1;
+  readonly counterMin = 1;
+  readonly counterMax = Infinity;
+  readonly counterWrap = false;
 
   constructor(public itemService: ItemService,
               private snackBar: MatSnackBar) {
@@ -40,16 +40,16 @@ export class AddItemComponent implements OnInit {
     });
   }
 
-  updateItem() {
+  addItem() {
     const name = this.itemForm.get('name').value;
     const amount = this.itemForm.get('amount').value;
     const item = new Item(name, amount);
-    this.itemService.updateItem(item).then(() => {
-      this.addTravelSnackBar(this.message);
+    this.itemService.addItem(item).then(() => {
+      this.addTravelSnackBar(this.notification);
     });
   }
 
-  addTravelSnackBar(message: string) {
+  private addTravelSnackBar(message: string) {
     this.snackBar.open(message, '', {
       duration: 2000,
     });
