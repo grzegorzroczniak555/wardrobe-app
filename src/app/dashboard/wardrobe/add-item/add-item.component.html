@@ -13,7 +13,7 @@
       </mat-optgroup>
     </mat-select>
     <mat-error *ngIf="itemForm.get('name').invalid && (itemForm.get('name').dirty || itemForm.get('name').touched)">
-      <span *ngIf="itemForm.get('name').errors.required"> Please choose a item </span>
+      <span *ngIf="itemForm.get('name').errors.required"> Please choose an item </span>
     </mat-error>
   </mat-form-field>
 
@@ -24,7 +24,7 @@
  </form>
   <h1 class="add-travel-title ml-3 mt-4 mb-3 text-monospace font-weight-bold"> Your wardrobe</h1>
   <div *ngIf="items.length === 0" class="ml-3 d-flex flex-row align-items-center">
-    <p class="text-info"> Your wardrobe is empty, let's buy a item! </p>
+    <p class="text-info"> Your wardrobe is empty, let's buy an item! </p>
     <i class="material-icons ml-1 mb-3">mood</i>
   </div>
   <ul class="list-group">
