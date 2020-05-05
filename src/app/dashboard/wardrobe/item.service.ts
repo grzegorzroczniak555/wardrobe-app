@@ -11,7 +11,7 @@ export class ItemService {
 
   private itemsCollection: AngularFirestoreCollection<Item>;
   private COLLECTION_NAME: string;
-  public userId: string;
+  private userId: string;
 
   constructor(private afs: AngularFirestore,
               private authService: AuthService) {
@@ -26,11 +26,7 @@ export class ItemService {
     return this.afs.collection<Item>(this.COLLECTION_NAME).valueChanges();
   }
 
-  addFirstItem(item: Item): Promise<DocumentReference> {
-    return this.itemsCollection.add(Object.assign({}, item));
-  }
-
-  async addItem(item: Item) {
+  async upsert(item: Item) {
     const query = this.afs.collectionGroup('item', ref => ref.where('name', '==', `${item.name}`));
     const promise = await query.get().toPromise();
     const docs = promise.docs;
@@ -40,7 +36,7 @@ export class ItemService {
       retrievedItem.amount += item.amount;
       this.afs.collection(this.COLLECTION_NAME).doc(itemDoc.id).update(Object.assign({}, retrievedItem));
     } else {
-      this.addFirstItem(item);
+      await this.itemsCollection.add(Object.assign({}, item));
     }
   }
 

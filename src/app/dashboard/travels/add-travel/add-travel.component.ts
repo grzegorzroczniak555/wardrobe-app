@@ -11,7 +11,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class AddTravelComponent implements OnInit {
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
-  readonly notification = 'Travel has been added!';
+  readonly successNotificationMessage = 'Travel has been added!';
   travelForm = new FormGroup({
     destination: new FormControl('', [
       Validators.minLength(3),
@@ -29,7 +29,7 @@ export class AddTravelComponent implements OnInit {
   travels: Travel[] = [];
   minDate: Date;
 
-  constructor(public travelService: TravelService,
+  constructor(private travelService: TravelService,
               private snackBar: MatSnackBar) {
     this.minDate = new Date();
   }
@@ -51,7 +51,7 @@ export class AddTravelComponent implements OnInit {
     const travel = new Travel(destination, startDate, endDate);
     this.travelService.addTravel(travel).then(() => {
       this.formDirective.resetForm();
-      this.addTravelSnackBar(this.notification);
+      this.addTravelSnackBar(this.successNotificationMessage);
     });
   }
 

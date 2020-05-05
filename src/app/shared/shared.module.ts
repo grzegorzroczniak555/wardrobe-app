@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { AddItemComponent } from '../dashboard/wardrobe/add-item/add-item.component';
 import { IncrementInputComponent } from '../dashboard/wardrobe/increment-input/increment-input.component';
-import { NavbarComponent } from '../dashboard/navbar/navbar.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,9 +26,7 @@ import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
-    AddItemComponent,
-    IncrementInputComponent,
-    NavbarComponent
+    IncrementInputComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -54,9 +50,7 @@ import {RouterModule} from '@angular/router';
     RouterModule
   ],
   exports: [
-    AddItemComponent,
     IncrementInputComponent,
-    NavbarComponent,
     BrowserAnimationsModule,
     BrowserModule,
     CommonModule,

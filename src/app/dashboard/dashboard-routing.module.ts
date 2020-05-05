@@ -18,7 +18,13 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'add-item',
+        path: 'items',
+        children: [
+          {
+            path: 'add',
+            component: AddTravelComponent
+          }
+        ],
         component: AddItemComponent
       }
     ]

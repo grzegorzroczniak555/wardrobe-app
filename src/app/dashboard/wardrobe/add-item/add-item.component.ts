@@ -11,10 +11,13 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./add-item.component.css']
 })
 export class AddItemComponent implements OnInit {
-  readonly notification = 'Item has been added!';
+  readonly successNotificationMessage = 'Item has been added!';
   itemForm = new FormGroup( {
     name:  new FormControl('', Validators.required),
-    amount: new FormControl()
+    amount: new FormControl('', [
+      Validators.required,
+      Validators.minLength(1)
+    ])
   });
 
   itemsGroups = itemsGroups;
@@ -26,7 +29,7 @@ export class AddItemComponent implements OnInit {
   readonly counterMax = Infinity;
   readonly counterWrap = false;
 
-  constructor(public itemService: ItemService,
+  constructor(private itemService: ItemService,
               private snackBar: MatSnackBar) {
   }
 
@@ -40,12 +43,12 @@ export class AddItemComponent implements OnInit {
     });
   }
 
-  addItem() {
+  upsert() {
     const name = this.itemForm.get('name').value;
     const amount = this.itemForm.get('amount').value;
     const item = new Item(name, amount);
-    this.itemService.addItem(item).then(() => {
-      this.addTravelSnackBar(this.notification);
+    this.itemService.upsert(item).then(() => {
+      this.addTravelSnackBar(this.successNotificationMessage);
     });
   }
 

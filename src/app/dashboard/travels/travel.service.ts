@@ -12,7 +12,7 @@ export class TravelService {
   readonly COLLECTION_NAME = 'travels';
 
   private travelsCollection: AngularFirestoreCollection<Travel>;
-  public userId: string;
+  private userId: string;
 
   constructor(private afs: AngularFirestore,
               private authService: AuthService) {
