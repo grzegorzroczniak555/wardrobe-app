@@ -34,9 +34,9 @@ export class ItemService {
       const itemDoc = docs[0];
       const retrievedItem = itemDoc.data() as Item;
       retrievedItem.amount += item.amount;
-      this.afs.collection(this.COLLECTION_NAME).doc(itemDoc.id).update(Object.assign({}, retrievedItem));
+      return this.afs.collection(this.COLLECTION_NAME).doc(itemDoc.id).update(Object.assign({}, retrievedItem));
     } else {
-      await this.itemsCollection.add(Object.assign({}, item));
+      return await this.itemsCollection.add(Object.assign({}, item));
     }
   }
 

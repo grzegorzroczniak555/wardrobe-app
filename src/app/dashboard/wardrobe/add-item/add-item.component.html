@@ -21,7 +21,7 @@
                        [min]="counterMin" [max]="counterMax" [wrap]="counterWrap">
   </app-increment-input>
 
-  <button mat-raised-button color="primary" type="submit" matTooltip="{{itemForm.invalid ? '' : 'Add items'}}" class="button ml-2 my-3" [disabled]="itemForm.invalid">Add Items</button>
+  <button mat-raised-button color="primary" type="submit" matTooltip="{{itemForm.invalid ? '' : 'Add item'}}" class="button ml-2 my-3" [disabled]="itemForm.invalid">Add Item</button>
  </form>
   <h1 class="add-travel-title ml-3 mt-4 mb-3 text-monospace font-weight-bold"> Your wardrobe</h1>
   <div *ngIf="items.length === 0" class="ml-3 d-flex flex-row align-items-center">

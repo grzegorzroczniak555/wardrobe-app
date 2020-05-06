@@ -24,7 +24,7 @@
   </button>
   <mat-error *ngIf="itemFormAmount.get('amount').invalid && (itemFormAmount.get('amount').dirty || itemFormAmount.get('amount').touched)">
     <span *ngIf="itemFormAmount.get('amount').errors.required"> Please choose an amount. </span>
-    <span *ngIf="itemFormAmount.get('amount').errors.minlength"> Amount must be greater than zero. </span>
+    <span *ngIf="itemFormAmount.get('amount').errors.min"> Amount must be greater than zero. </span>
   </mat-error>
 </mat-form-field>
 </form>
