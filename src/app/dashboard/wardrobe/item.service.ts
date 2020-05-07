@@ -26,7 +26,7 @@ export class ItemService {
     return this.afs.collection<Item>(this.COLLECTION_NAME).valueChanges();
   }
 
-  async upsert(item: Item) {
+  async upsert(item: Item): Promise<DocumentReference | void> {
     const query = this.afs.collectionGroup('item', ref => ref.where('name', '==', `${item.name}`));
     const promise = await query.get().toPromise();
     const docs = promise.docs;
@@ -36,7 +36,7 @@ export class ItemService {
       retrievedItem.amount += item.amount;
       return this.afs.collection(this.COLLECTION_NAME).doc(itemDoc.id).update(Object.assign({}, retrievedItem));
     } else {
-      return await this.itemsCollection.add(Object.assign({}, item));
+      return this.itemsCollection.add(Object.assign({}, item));
     }
   }
 
