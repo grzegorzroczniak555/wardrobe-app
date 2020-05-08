@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { LayoutModule } from '@angular/cdk/layout';
 import { RouterModule } from '@angular/router';
 
 import { AngularFireModule } from '@angular/fire';
@@ -29,7 +28,6 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     DashboardModule,
     SharedModule,
-    LayoutModule,
     RouterModule
   ],
   providers: [],
