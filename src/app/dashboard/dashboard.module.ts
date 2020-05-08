@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { AddItemComponent } from './wardrobe/add-item/add-item.component';
 import { AddTravelComponent } from './travels/add-travel/add-travel.component';
+import { CheckRecommendationComponent } from './wardrobe/check-recommendation/check-recommendation.component';
 import { DashboardComponent } from './dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
@@ -14,6 +15,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   declarations: [
     AddItemComponent,
     AddTravelComponent,
+    CheckRecommendationComponent,
     DashboardComponent,
     NavbarComponent
   ],

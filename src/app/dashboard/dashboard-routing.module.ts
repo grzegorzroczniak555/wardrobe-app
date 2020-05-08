@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AddItemComponent } from './wardrobe/add-item/add-item.component';
 import { AddTravelComponent } from './travels/add-travel/add-travel.component';
+import { CheckRecommendationComponent } from './wardrobe/check-recommendation/check-recommendation.component';
 import { DashboardComponent } from './dashboard.component';
 
 const routes: Routes = [
@@ -22,10 +23,18 @@ const routes: Routes = [
         children: [
           {
             path: 'add',
-            component: AddTravelComponent
+            component: AddItemComponent
           }
         ],
-        component: AddItemComponent
+      },
+      {
+        path: 'recommendation',
+        children: [
+          {
+            path: 'check',
+            component: CheckRecommendationComponent
+          }
+        ],
       }
     ]
   },
