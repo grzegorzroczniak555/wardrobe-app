@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { Travel } from '../dashboard/travels/travel.model';
+import { Config } from './weather.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
 
-  private weatherUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=Krak%C3%B3w&units=metric&lang=pl&appid=' +
-    'a08da062703bc4ce3b6fab0f359bfafa';
+  readonly apiKey = environment.weather.apiKey;
+  readonly apiUrl = environment.weather.apiUrl;
 
   constructor(private http: HttpClient) { }
 
-  getWeather() {
-    return this.http.get(this.weatherUrl);
+  getWeather(travel: Travel) {
+    return this.http.get<Config>(`${this.apiUrl}${travel.destination}&units=metric&lang=pl&appid=${this.apiKey}`);
   }
 }
