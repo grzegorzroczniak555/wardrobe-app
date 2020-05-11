@@ -14,13 +14,15 @@ import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    MainPageComponent
+    MainPageComponent,
+    ErrorPageComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

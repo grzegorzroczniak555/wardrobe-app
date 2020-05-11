@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { AuthGuard } from './core/auth.guard';
+import {ErrorPageComponent} from './error-page/error-page.component';
 
 const routes: Routes = [
   {path: 'home-page', component: HomePageComponent},
@@ -19,6 +20,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'main-page',
     pathMatch: 'full'
+  },
+  {
+    path: '404',
+    pathMatch: 'full',
+    component: ErrorPageComponent
   }
 ];
 
