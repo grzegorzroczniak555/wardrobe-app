@@ -5,7 +5,7 @@ export interface Config {
     sunset: number;
     timezone: number;
   };
-  list: List;
+  list: List[];
 }
 
 export interface List {
@@ -17,7 +17,7 @@ export interface List {
   main: {
     temp: number;
   };
-  weather: Weather;
+  weather: Weather[];
 }
 
 export interface Weather {

@@ -3,7 +3,7 @@ import {Travel} from '../../travels/travel.model';
 import {TravelService} from '../../travels/travel.service';
 import {WeatherService} from '../../../weather-api/weather.service';
 import {Config} from '../../../weather-api/weather.model';
-import {HttpErrorResponse} from '@angular/common/http';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {throwError} from 'rxjs';
 import {Router} from '@angular/router';
 
@@ -34,15 +34,16 @@ export class CheckRecommendationComponent implements OnInit {
   }
 
   getWeather(travel: Travel) {
-    this.weatherService.getWeather(travel).subscribe((value: Config) => {
-       console.log(value);
-       // this.weather = {} as Config;
-       // value = {} as Config;
-       this.weather = value;
-       console.log(this.weather);
-    },
+    this.weatherService.getWeather(travel).subscribe((res: HttpResponse<Config>) => {
+        console.log(res);
+        // this.weather = {} as Config;
+        // value = {} as Config;
+        this.weather = res.body as Config;
+        console.log(this.weather);
+        console.log(this.weather.list[5]);
+      },
       error => {
-      this.errorHandler(error);
+        this.errorHandler(error);
       });
   }
 
