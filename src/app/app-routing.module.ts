@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { AuthGuard } from './core/auth.guard';
 import {ErrorPageComponent} from './error-page/error-page.component';
+import {ConnectionFailedPageComponent} from './connection-failed-page/connection-failed-page.component';
 
 const routes: Routes = [
   {path: 'home-page', component: HomePageComponent},
@@ -22,9 +23,9 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: '404',
+    path: 'connection-failed',
     pathMatch: 'full',
-    component: ErrorPageComponent
+    component: ConnectionFailedPageComponent
   }
 ];
 

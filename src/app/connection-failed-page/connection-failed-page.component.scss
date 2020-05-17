@@ -20,6 +20,7 @@ $nunito-font: 'Nunito', sans-serif;
 html {
   height: 100%;
 }
+
 body{
   background-image: url('https://mars-404.templateku.co/img/star.svg'),linear-gradient(to bottom, #05007A, #4D007D);
   height: 100%;
@@ -47,9 +48,9 @@ body{
   top: 16vmin;
   width: 30vmin;
 
-@include breakpoint(mobile){
-  top: 45vmin;
-}
+  @include breakpoint(mobile){
+    top: 45vmin;
+  }
 }
 
 .meteor{
@@ -66,9 +67,9 @@ body{
   font-size: 5vmin;
   margin-top: 31vmin;
 
-@include breakpoint(mobile){
-  margin-top: 65vmin;
-}
+  @include breakpoint(mobile){
+    margin-top: 65vmin;
+  }
 }
 
 .subtitle{
@@ -90,14 +91,14 @@ body{
   text-decoration: none;
   border-radius: 5px;
 
-&:hover{
-   background: white;
-   color: #4D007D;
- }
+  &:hover{
+    background: white;
+    color: #4D007D;
+  }
 
-@include breakpoint(mobile){
-  font-size: 3.5vmin;
-}
+  @include breakpoint(mobile){
+    font-size: 3.5vmin;
+  }
 }
 
 .astronaut{
@@ -107,9 +108,9 @@ body{
   height: 30vmin;
   animation: floating 3s infinite ease-in-out;
 
-@include breakpoint(mobile){
-  top: 2vmin;
-}
+  @include breakpoint(mobile){
+    top: 2vmin;
+  }
 }
 
 .spaceship{
@@ -117,8 +118,8 @@ body{
   bottom: 15vmin;
   right: 24vmin;
 
-@include breakpoint(mobile){
-  width: 45vmin;
-  bottom: 18vmin;
-}
+  @include breakpoint(mobile){
+    width: 45vmin;
+    bottom: 18vmin;
+  }
 }

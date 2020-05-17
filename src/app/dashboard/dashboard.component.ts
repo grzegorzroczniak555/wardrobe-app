@@ -8,7 +8,7 @@ import { TravelService } from './travels/travel.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
   @ViewChild('sidenav') sidenav: MatSidenav;

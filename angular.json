@@ -25,9 +25,9 @@
               "src/assets/images"
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.css",
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.scss",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.scss",
+              "src/styles.scss"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
@@ -94,9 +94,9 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.css",
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.scss",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.scss",
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -129,5 +129,10 @@
       }
     }
   },
-  "defaultProject": "wardrobe-app"
+  "defaultProject": "wardrobe-app",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

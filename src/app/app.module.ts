@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ConnectionFailedPageComponent } from './connection-failed-page/connection-failed-page.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 import { ErrorPageComponent } from './error-page/error-page.component';
@@ -20,6 +21,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 @NgModule({
   declarations: [
     AppComponent,
+    ConnectionFailedPageComponent,
     HomePageComponent,
     MainPageComponent,
     ErrorPageComponent

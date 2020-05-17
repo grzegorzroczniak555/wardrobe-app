@@ -10,12 +10,12 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-check-recommendation',
   templateUrl: './check-recommendation.component.html',
-  styleUrls: ['./check-recommendation.component.css']
+  styleUrls: ['./check-recommendation.component.scss']
 })
 export class CheckRecommendationComponent implements OnInit {
 
   travels: Travel[] = [];
-  weather: Config;
+  private weather: Config;
   today = new Date();
 
   constructor(private travelService: TravelService,
@@ -29,18 +29,15 @@ export class CheckRecommendationComponent implements OnInit {
 
   getTravels() {
     this.travelService.getTravels().subscribe(travels => {
-      this.travels = travels.filter(travel => ((travel.startDate.seconds * 1000) - this.today.getTime() < 86400));
+      this.travels = travels.filter(travel =>
+        (((travel.startDate.seconds * 1000) - this.today.getTime() < 86400)
+          && ((travel.startDate.seconds * 1000) - this.today.getTime() > -172800000)));
     });
   }
 
   getWeather(travel: Travel) {
     this.weatherService.getWeather(travel).subscribe((res: HttpResponse<Config>) => {
-        console.log(res);
-        // this.weather = {} as Config;
-        // value = {} as Config;
         this.weather = res.body as Config;
-        console.log(this.weather);
-        console.log(this.weather.list[5]);
       },
       error => {
         this.errorHandler(error);
@@ -48,7 +45,7 @@ export class CheckRecommendationComponent implements OnInit {
   }
 
   errorHandler(error: HttpErrorResponse) {
-    this.router.navigateByUrl('/404');
+    this.router.navigateByUrl('/connection-failed');
     return throwError(error.message || 'server Error');
   }
 }
