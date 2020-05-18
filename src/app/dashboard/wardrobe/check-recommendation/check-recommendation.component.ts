@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Travel} from '../../travels/travel.model';
 import {TravelService} from '../../travels/travel.service';
 import {WeatherService} from '../../../weather-api/weather.service';
-import {Config} from '../../../weather-api/weather.model';
+import {Weather} from '../../../weather-api/weather.model';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {throwError} from 'rxjs';
 import {Router} from '@angular/router';
@@ -15,8 +15,8 @@ import {Router} from '@angular/router';
 export class CheckRecommendationComponent implements OnInit {
 
   travels: Travel[] = [];
-  private weather: Config;
-  today = new Date();
+  private weather: Weather;
+  private today = new Date();
 
   constructor(private travelService: TravelService,
               private weatherService: WeatherService,
@@ -36,8 +36,8 @@ export class CheckRecommendationComponent implements OnInit {
   }
 
   getWeather(travel: Travel) {
-    this.weatherService.getWeather(travel).subscribe((res: HttpResponse<Config>) => {
-        this.weather = res.body as Config;
+    this.weatherService.getWeather(travel).subscribe((res: HttpResponse<Weather>) => {
+        this.weather = res.body as Weather;
       },
       error => {
         this.errorHandler(error);
@@ -45,7 +45,7 @@ export class CheckRecommendationComponent implements OnInit {
   }
 
   errorHandler(error: HttpErrorResponse) {
-    this.router.navigateByUrl('/connection-failed');
+    this.router.navigate(['/connection-failed']);
     return throwError(error.message || 'server Error');
   }
 }

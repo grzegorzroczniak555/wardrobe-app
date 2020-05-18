@@ -23,6 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {RouterModule} from '@angular/router';
     BrowserModule,
     CommonModule,
     FormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatDatepickerModule,
     MatDialogModule,

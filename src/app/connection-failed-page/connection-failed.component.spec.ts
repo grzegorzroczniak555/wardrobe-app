@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConnectionFailedPageComponent } from './connection-failed-page.component';
+import { ConnectionFailedComponent } from './connection-failed.component';
 
 describe('ConnectionFailedPageComponent', () => {
-  let component: ConnectionFailedPageComponent;
-  let fixture: ComponentFixture<ConnectionFailedPageComponent>;
+  let component: ConnectionFailedComponent;
+  let fixture: ComponentFixture<ConnectionFailedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConnectionFailedPageComponent ]
+      declarations: [ ConnectionFailedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConnectionFailedPageComponent);
+    fixture = TestBed.createComponent(ConnectionFailedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,15 +1,14 @@
-import { HomePageComponent } from './home-page/home-page.component';
+import { HomeComponent } from './home-page/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MainPageComponent } from './main-page/main-page.component';
+import { MainComponent } from './main-page/main.component';
 import { AuthGuard } from './core/auth.guard';
-import {ErrorPageComponent} from './error-page/error-page.component';
-import {ConnectionFailedPageComponent} from './connection-failed-page/connection-failed-page.component';
+import {ConnectionFailedComponent} from './connection-failed-page/connection-failed.component';
 
 const routes: Routes = [
-  {path: 'home-page', component: HomePageComponent},
-  {path: 'main-page', component: MainPageComponent},
+  {path: 'home-page', component: HomeComponent},
+  {path: 'main-page', component: MainComponent},
   {
     path: 'dashboard',
     canActivate: [AuthGuard],
@@ -25,7 +24,7 @@ const routes: Routes = [
   {
     path: 'connection-failed',
     pathMatch: 'full',
-    component: ConnectionFailedPageComponent
+    component: ConnectionFailedComponent
   }
 ];
 
