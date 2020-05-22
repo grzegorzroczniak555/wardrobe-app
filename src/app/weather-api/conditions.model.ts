@@ -1,4 +1,4 @@
-import {Summation} from './summation.model';
+import {Summary} from './summary.model';
 
 export interface Conditions {
   clouds: {
@@ -9,5 +9,5 @@ export interface Conditions {
   main: {
     temp: number;
   };
-  weather: Summation[];
+  weather: Summary[];
 }

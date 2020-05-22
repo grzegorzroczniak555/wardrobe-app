@@ -1,4 +1,4 @@
-export interface Summation {
+export interface Summary {
   main: string;
   description: string;
   icon: string;

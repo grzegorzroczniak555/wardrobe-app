@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainComponent } from './main-page/main.component';
 import { AuthGuard } from './core/auth.guard';
-import {ConnectionFailedComponent} from './connection-failed-page/connection-failed.component';
 
 const routes: Routes = [
   {path: 'home-page', component: HomeComponent},
@@ -21,11 +20,6 @@ const routes: Routes = [
     redirectTo: 'main-page',
     pathMatch: 'full'
   },
-  {
-    path: 'connection-failed',
-    pathMatch: 'full',
-    component: ConnectionFailedComponent
-  }
 ];
 
 @NgModule({

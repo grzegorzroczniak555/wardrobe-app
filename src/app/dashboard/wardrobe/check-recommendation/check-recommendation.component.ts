@@ -19,8 +19,7 @@ export class CheckRecommendationComponent implements OnInit {
   private today = new Date();
 
   constructor(private travelService: TravelService,
-              private weatherService: WeatherService,
-              private router: Router) {
+              private weatherService: WeatherService) {
   }
 
   ngOnInit(): void {
@@ -45,7 +44,6 @@ export class CheckRecommendationComponent implements OnInit {
   }
 
   errorHandler(error: HttpErrorResponse) {
-    this.router.navigate(['/connection-failed']);
     return throwError(error.message || 'server Error');
   }
 }
