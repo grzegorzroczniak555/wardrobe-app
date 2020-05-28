@@ -1,0 +1,27 @@
+<div class="container d-flex flex-column ml-3 mt-3">
+
+  <h1 class="add-travel-title ml-3 mt-2 mb-4 text-monospace font-weight-bold"> Check recommendation for your
+    travels </h1>
+
+  <div *ngIf="travels.length === 0" class="ml-3 d-flex flex-row align-items-center">
+    <p class="text-info"> List of your travel, which are within the next day, is empty,
+      <a [routerLink]="['/dashboard/travels/add']">let's plan a travel! </a>
+    </p>
+    <i class="material-icons ml-1 mb-3">mood</i>
+  </div>
+
+  <ul class="list-group" *ngFor="let travel of travels">
+    <li class="list-group-item ml-3 mb-3
+      tab-content d-flex justify-content-between flex-column align-items-start align-content-center">
+        <span> Destination: <b>{{travel.destination}}</b></span>
+        <span> Start Date: <b>{{travel.startDate.seconds * 1000 | date: 'fullDate'}}</b></span>
+        <span> End Date: <b>{{travel.endDate.seconds * 1000 | date: 'fullDate'}}</b></span>
+        <button mat-raised-button color="warn" class="button mt-3 ml-4"
+                matTooltip="Check recommendation"
+                (click)="getWeather(travel)">
+                Check recommendation
+        </button>
+    </li>
+  </ul>
+
+</div>

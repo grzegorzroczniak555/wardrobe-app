@@ -3,10 +3,10 @@ import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-main-page',
-  templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css']
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
-export class MainPageComponent implements OnInit {
+export class MainComponent implements OnInit {
 
   constructor(public authService: AuthService) { }
 

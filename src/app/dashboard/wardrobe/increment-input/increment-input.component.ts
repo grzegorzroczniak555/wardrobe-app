@@ -4,7 +4,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 @Component({
   selector: 'app-increment-input',
   templateUrl: './increment-input.component.html',
-  styleUrls: ['./increment-input.component.css']
+  styleUrls: ['./increment-input.component.scss']
 })
 export class IncrementInputComponent {
 

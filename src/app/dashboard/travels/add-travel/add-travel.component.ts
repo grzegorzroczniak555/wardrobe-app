@@ -7,7 +7,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-travel',
   templateUrl: './add-travel.component.html',
-  styleUrls: ['./add-travel.component.css']
+  styleUrls: ['./add-travel.component.scss']
 })
 export class AddTravelComponent implements OnInit {
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;

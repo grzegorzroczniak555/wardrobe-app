@@ -8,7 +8,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',
-  styleUrls: ['./add-item.component.css']
+  styleUrls: ['./add-item.component.scss']
 })
 export class AddItemComponent implements OnInit {
   readonly successNotificationMessage = 'Item has been added!';
