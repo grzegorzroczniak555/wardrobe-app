@@ -1,36 +1,34 @@
 <div class="container d-flex flex-column ml-3 mt-3">
-  <h1 class="add-travel-title ml-3 mt-2 mb-3 text-monospace font-weight-bold"> Add item to wardrobe</h1>
+    <h1 class="add-travel-title ml-3 mt-2 mb-3 text-monospace font-weight-bold"> Add item to wardrobe</h1>
 
- <form [formGroup] = "itemForm" (ngSubmit)="upsert()" class="d-flex flex-column">
-  <mat-form-field class="ml-3 w-25">
-    <mat-label>Select item</mat-label>
-    <mat-select formControlName="name">
-      <mat-optgroup *ngFor="let group of itemsGroups" [label]="group.name"
-                    [disabled]="group.disabled">
-      <mat-option *ngFor="let item of group.item" [value]="item.name">
-        {{item.name}}
-      </mat-option>
-      </mat-optgroup>
-    </mat-select>
-    <mat-error *ngIf="itemForm.get('name').invalid && (itemForm.get('name').dirty || itemForm.get('name').touched)">
-      <span *ngIf="itemForm.get('name').errors.required"> Please choose an item. </span>
-    </mat-error>
-  </mat-form-field>
+    <form [formGroup]="itemForm" (ngSubmit)="upsert()" class="d-flex flex-column">
+        <mat-form-field class="ml-3 w-25">
+            <mat-label>Select item</mat-label>
+            <mat-select formControlName="name">
+                <mat-optgroup *ngFor="let group of selectedOptions" [label]="group.name" [disabled]="group.disabled">
+                    <mat-option *ngFor="let item of group.item" [value]="item.name">
+                        {{item.name}}
+                    </mat-option>
+                </mat-optgroup>
+            </mat-select>
+            <mat-error *ngIf="itemForm.get('name').invalid && (itemForm.get('name').dirty || itemForm.get('name').touched)">
+                <span *ngIf="itemForm.get('name').errors.required"> Please choose an item. </span>
+            </mat-error>
+        </mat-form-field>
 
-  <app-increment-input class="ml-3" [itemFormAmount]="itemForm" [value]="counterValue || 0" [step]="counterStep"
-                       [min]="counterMin" [max]="counterMax" [wrap]="counterWrap">
-  </app-increment-input>
+        <app-increment-input class="ml-3" [itemFormAmount]="itemForm" [value]="counterValue || 0" [step]="counterStep" [min]="counterMin" [max]="counterMax" [wrap]="counterWrap">
+        </app-increment-input>
 
-  <button mat-raised-button color="primary" type="submit" matTooltip="{{itemForm.invalid ? '' : 'Add item'}}" class="button ml-2 my-3" [disabled]="itemForm.invalid">Add Item</button>
- </form>
-  <h1 class="add-travel-title ml-3 mt-4 mb-3 text-monospace font-weight-bold"> Your wardrobe</h1>
-  <div *ngIf="items.length === 0" class="ml-3 d-flex flex-row align-items-center">
-    <p class="text-info"> Your wardrobe is empty, let's buy an item! </p>
-    <i class="material-icons ml-1 mb-3">mood</i>
-  </div>
-  <ul class="list-group">
-    <li class="list-group-item ml-3 mb-3 tab-content d-flex justify-content-between flex-column align-items-start align-content-center" *ngFor="let item of items">
-      <span> Name: <b>{{item.name}}</b></span><span> Amount: <b>{{item.amount}}</b></span>
-    </li>
-  </ul>
+        <button mat-raised-button color="primary" type="submit" matTooltip="{{itemForm.invalid ? '' : 'Add item'}}" class="button ml-2 my-3" [disabled]="itemForm.invalid">Add Item</button>
+    </form>
+    <h1 class="add-travel-title ml-3 mt-4 mb-3 text-monospace font-weight-bold"> Your wardrobe</h1>
+    <div *ngIf="items.length === 0" class="ml-3 d-flex flex-row align-items-center">
+        <p class="text-info"> Your wardrobe is empty, let's buy an item! </p>
+        <i class="material-icons ml-1 mb-3">mood</i>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item ml-3 mb-3 tab-content d-flex justify-content-between flex-column align-items-start align-content-center" *ngFor="let item of items">
+            <span> Name: <b>{{item.name}}</b></span><span> Amount: <b>{{item.amount}}</b></span>
+        </li>
+    </ul>
 </div>

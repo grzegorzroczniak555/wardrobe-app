@@ -1,5 +1,6 @@
+import { getItemsSelectOptions } from './../items';
 import {Component, OnInit} from '@angular/core';
-import {itemsGroups} from '../items';
+import {items} from '../items';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ItemService} from '../item.service';
 import {Item} from '../item.model';
@@ -20,8 +21,9 @@ export class AddItemComponent implements OnInit {
     ])
   });
 
-  itemsGroups = itemsGroups;
+  // itemsGroups = items;
   items: Item[] = [];
+  selectedOptions = getItemsSelectOptions();
 
   readonly counterValue = 1;
   readonly counterStep = 1;
@@ -38,12 +40,12 @@ export class AddItemComponent implements OnInit {
   }
 
   getItems() {
-    this.itemService.getItems().subscribe(items => {
-      this.items = items;
+    this.itemService.getItems().subscribe(itemss => {
+      this.items = itemss;
     });
   }
 
-  upsert() {
+upsert() {
     const name = this.itemForm.get('name').value;
     const amount = this.itemForm.get('amount').value;
     const item = new Item(name, amount);

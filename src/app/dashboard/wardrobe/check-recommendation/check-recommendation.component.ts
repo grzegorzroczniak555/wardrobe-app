@@ -55,69 +55,69 @@ export class CheckRecommendationComponent implements OnInit {
   // 2: {name: "Rainproof"}
   // 3: {name: "Towel"}
 
-  checkRecommendation(weather: Weather) {
-    if (this.recommendedItems.categories[0].children[0].amount < this.recommendedItems.categories[0].children[0].maxPerTrip) {
-      this.recommendedItems.categories[0].children[0].amount++; // Trousers
-    }
-    if (this.recommendedItems.categories[0].children[1].amount < this.recommendedItems.categories[0].children[1].maxPerTrip) {
-      this.recommendedItems.categories[0].children[1].amount++; // T-shirt
-    }
-    if (this.recommendedItems.categories[0].children[2].amount < this.recommendedItems.categories[0].children[2].maxPerTrip) {
-      this.recommendedItems.categories[0].children[2].amount++; // Blouse
-    }
-    if (this.recommendedItems.categories[1].children[0].amount < this.recommendedItems.categories[1].children[0].maxPerTrip) {
-      this.recommendedItems.categories[1].children[0].amount++; // Sport Shoes
-    }
-    if (this.recommendedItems.categories[1].children[2].amount < this.recommendedItems.categories[1].children[2].maxPerTrip) {
-      this.recommendedItems.categories[1].children[2].amount++; // Casual T-shirt
-    }
-    if (this.recommendedItems.categories[1].children[3].amount < this.recommendedItems.categories[1].children[3].maxPerTrip) {
-      this.recommendedItems.categories[1].children[3].amount++; // Casual Trousers
-    }
-    if (this.recommendedItems.categories[1].children[5].amount < this.recommendedItems.categories[1].children[5].maxPerTrip) {
-      this.recommendedItems.categories[1].children[5].amount++; // Slippers
-    }
+  // checkRecommendation(weather: Weather) {
+  //   if (this.recommendedItems.categories[0].children[0].amount < this.recommendedItems.categories[0].children[0].maxPerTrip) {
+  //     this.recommendedItems.categories[0].children[0].amount++; // Trousers
+  //   }
+  //   if (this.recommendedItems.categories[0].children[1].amount < this.recommendedItems.categories[0].children[1].maxPerTrip) {
+  //     this.recommendedItems.categories[0].children[1].amount++; // T-shirt
+  //   }
+  //   if (this.recommendedItems.categories[0].children[2].amount < this.recommendedItems.categories[0].children[2].maxPerTrip) {
+  //     this.recommendedItems.categories[0].children[2].amount++; // Blouse
+  //   }
+  //   if (this.recommendedItems.categories[1].children[0].amount < this.recommendedItems.categories[1].children[0].maxPerTrip) {
+  //     this.recommendedItems.categories[1].children[0].amount++; // Sport Shoes
+  //   }
+  //   if (this.recommendedItems.categories[1].children[2].amount < this.recommendedItems.categories[1].children[2].maxPerTrip) {
+  //     this.recommendedItems.categories[1].children[2].amount++; // Casual T-shirt
+  //   }
+  //   if (this.recommendedItems.categories[1].children[3].amount < this.recommendedItems.categories[1].children[3].maxPerTrip) {
+  //     this.recommendedItems.categories[1].children[3].amount++; // Casual Trousers
+  //   }
+  //   if (this.recommendedItems.categories[1].children[5].amount < this.recommendedItems.categories[1].children[5].maxPerTrip) {
+  //     this.recommendedItems.categories[1].children[5].amount++; // Slippers
+  //   }
 
-    if (weather.list[1].main.temp < 15) {
-      if (this.recommendedItems.categories[0].children[2].amount < this.recommendedItems.categories[0].children[2].maxPerTrip) {
-        this.recommendedItems.categories[0].children[2].amount++; // Blouse
-      }
-    }
-    if (weather.list[1].main.temp < 8) {
-      if (this.recommendedItems.categories[0].children[5].amount < this.recommendedItems.categories[0].children[5].maxPerTrip) {
-        this.recommendedItems.categories[0].children[5].amount++; // Jacket
-      }
-    }
-    if (weather.list[1].main.temp < 0) {
-      if (this.recommendedItems.categories[0].children[6].amount < this.recommendedItems.categories[0].children[6].maxPerTrip) {
-        this.recommendedItems.categories[0].children[6].amount++; // Winter Jacket
-      }
-      if (this.recommendedItems.categories[0].children[8].amount < this.recommendedItems.categories[0].children[8].maxPerTrip) {
-        this.recommendedItems.categories[0].children[8].amount++; // Gloves
-      }
-      if (this.recommendedItems.categories[0].children[9].amount < this.recommendedItems.categories[0].children[9].maxPerTrip) {
-        this.recommendedItems.categories[0].children[9].amount++; // Winter Boots
-      }
-    }
-    if (weather.list[1].main.temp < 5) {
-      if (this.recommendedItems.categories[0].children[7].amount < this.recommendedItems.categories[0].children[7].maxPerTrip) {
-        this.recommendedItems.categories[0].children[7].amount++; // Winter Cap
-      }
-    }
-    if (weather.list[1].main.temp > 15) {
-      if (this.recommendedItems.categories[0].children[1].amount < this.recommendedItems.categories[0].children[1].maxPerTrip) {
-        this.recommendedItems.categories[0].children[1].amount++; // T-shirt
-      }
-      if (this.recommendedItems.categories[1].children[4].amount < this.recommendedItems.categories[1].children[4].maxPerTrip) {
-        this.recommendedItems.categories[1].children[4].amount++; // Shorts
-      }
-      if (this.recommendedItems.categories[1].children[5].amount < this.recommendedItems.categories[1].children[5].maxPerTrip) {
-        this.recommendedItems.categories[1].children[5].amount++; // Slippers
-      }
-    }
-    console.log(weather.list[1]);
-    console.log(this.recommendedItems);
-  }
+  //   if (weather.list[1].main.temp < 15) {
+  //     if (this.recommendedItems.categories[0].children[2].amount < this.recommendedItems.categories[0].children[2].maxPerTrip) {
+  //       this.recommendedItems.categories[0].children[2].amount++; // Blouse
+  //     }
+  //   }
+  //   if (weather.list[1].main.temp < 8) {
+  //     if (this.recommendedItems.categories[0].children[5].amount < this.recommendedItems.categories[0].children[5].maxPerTrip) {
+  //       this.recommendedItems.categories[0].children[5].amount++; // Jacket
+  //     }
+  //   }
+  //   if (weather.list[1].main.temp < 0) {
+  //     if (this.recommendedItems.categories[0].children[6].amount < this.recommendedItems.categories[0].children[6].maxPerTrip) {
+  //       this.recommendedItems.categories[0].children[6].amount++; // Winter Jacket
+  //     }
+  //     if (this.recommendedItems.categories[0].children[8].amount < this.recommendedItems.categories[0].children[8].maxPerTrip) {
+  //       this.recommendedItems.categories[0].children[8].amount++; // Gloves
+  //     }
+  //     if (this.recommendedItems.categories[0].children[9].amount < this.recommendedItems.categories[0].children[9].maxPerTrip) {
+  //       this.recommendedItems.categories[0].children[9].amount++; // Winter Boots
+  //     }
+  //   }
+  //   if (weather.list[1].main.temp < 5) {
+  //     if (this.recommendedItems.categories[0].children[7].amount < this.recommendedItems.categories[0].children[7].maxPerTrip) {
+  //       this.recommendedItems.categories[0].children[7].amount++; // Winter Cap
+  //     }
+  //   }
+  //   if (weather.list[1].main.temp > 15) {
+  //     if (this.recommendedItems.categories[0].children[1].amount < this.recommendedItems.categories[0].children[1].maxPerTrip) {
+  //       this.recommendedItems.categories[0].children[1].amount++; // T-shirt
+  //     }
+  //     if (this.recommendedItems.categories[1].children[4].amount < this.recommendedItems.categories[1].children[4].maxPerTrip) {
+  //       this.recommendedItems.categories[1].children[4].amount++; // Shorts
+  //     }
+  //     if (this.recommendedItems.categories[1].children[5].amount < this.recommendedItems.categories[1].children[5].maxPerTrip) {
+  //       this.recommendedItems.categories[1].children[5].amount++; // Slippers
+  //     }
+  //   }
+  //   console.log(weather.list[1]);
+  //   console.log(this.recommendedItems);
+  // }
 
   getTravels() {
     console.log(this.recommendedItems);
@@ -138,7 +138,6 @@ export class CheckRecommendationComponent implements OnInit {
           }
         }
         console.log(this.onePerDayWeather);
-        this.checkRecommendation(this.weather);
       },
       error => {
         this.errorHandler(error);
