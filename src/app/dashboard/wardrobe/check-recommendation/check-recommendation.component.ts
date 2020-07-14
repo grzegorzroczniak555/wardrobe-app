@@ -1,11 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {Travel} from '../../travels/travel.model';
-import {TravelService} from '../../travels/travel.service';
-import {WeatherService} from '../../../weather-api/weather.service';
-import {Weather} from '../../../weather-api/weather.model';
-import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {throwError} from 'rxjs';
-import {items} from '../items';
+import { Recommendation, checkRecommendationForItem } from './../item.model';
+import { Component, OnInit } from '@angular/core';
+import { Travel } from '../../travels/travel.model';
+import { TravelService } from '../../travels/travel.service';
+import { WeatherService } from '../../../weather-api/weather.service';
+import { Weather } from '../../../weather-api/weather.model';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
+import { items } from '../items';
+import { Items } from '../item-group.model';
 
 @Component({
   selector: 'app-check-recommendation',
@@ -16,7 +18,7 @@ export class CheckRecommendationComponent implements OnInit {
 
   travels: Travel[] = [];
   recommendedItems = items;
-  private onePerDayWeather = [];
+  public onePerDayWeather = [];
   private weather: Weather;
   private today = new Date();
 
@@ -28,99 +30,74 @@ export class CheckRecommendationComponent implements OnInit {
     this.getTravels();
   }
 
-  // [0] Formal
-  // 0: {name: "Trousers"}
-  // 1: {name: "T-shirt"}
-  // 2: {name: "Blouse/Jersey"}
-  // 3: {name: "Shirt"}
-  // 4: {name: "Suit"}
-  // 5: {name: "Jacket"}
-  // 6: {name: "Winter Jacket/Coat"}
-  // 7: {name: "Winter Cap"}
-  // 8: {name: "Gloves"}
-  // 9: {name: "Winter Boots"}
-  // 10: {name: "Formal Shoes"}
+  checkRecommendation = (onePerDayWeather) => {
+    const recommendation = new Recommendation();
 
-  // [1] Casual
-  // 0: {name: "Sport Shoes"}
-  // 1: {name: "Tracksuit"}
-  // 2: {name: "Casual T-shirt"}
-  // 3: {name: "Casual Trousers"}
-  // 4: {name: "Shorts"}
-  // 5: {name: "Slippers"}
+    checkRecommendationForItem(Items.TROUSERS, recommendation);
+    checkRecommendationForItem(Items.TSHIRT, recommendation);
+    checkRecommendationForItem(Items.BLOUSE, recommendation);
+    checkRecommendationForItem(Items.SPORTSHOES, recommendation); // question?
+    checkRecommendationForItem(Items.CASUALTSHIRT, recommendation);
+    checkRecommendationForItem(Items.CASUALTROUSERS, recommendation);
+    checkRecommendationForItem(Items.SLIPPERS, recommendation);
 
-  // [2] Additives
-  // 0: {name: "Sunglasses"}
-  // 1: {name: "Umbrella"}
-  // 2: {name: "Rainproof"}
-  // 3: {name: "Towel"}
+    for (const weather of onePerDayWeather) {
 
-  // checkRecommendation(weather: Weather) {
-  //   if (this.recommendedItems.categories[0].children[0].amount < this.recommendedItems.categories[0].children[0].maxPerTrip) {
-  //     this.recommendedItems.categories[0].children[0].amount++; // Trousers
-  //   }
-  //   if (this.recommendedItems.categories[0].children[1].amount < this.recommendedItems.categories[0].children[1].maxPerTrip) {
-  //     this.recommendedItems.categories[0].children[1].amount++; // T-shirt
-  //   }
-  //   if (this.recommendedItems.categories[0].children[2].amount < this.recommendedItems.categories[0].children[2].maxPerTrip) {
-  //     this.recommendedItems.categories[0].children[2].amount++; // Blouse
-  //   }
-  //   if (this.recommendedItems.categories[1].children[0].amount < this.recommendedItems.categories[1].children[0].maxPerTrip) {
-  //     this.recommendedItems.categories[1].children[0].amount++; // Sport Shoes
-  //   }
-  //   if (this.recommendedItems.categories[1].children[2].amount < this.recommendedItems.categories[1].children[2].maxPerTrip) {
-  //     this.recommendedItems.categories[1].children[2].amount++; // Casual T-shirt
-  //   }
-  //   if (this.recommendedItems.categories[1].children[3].amount < this.recommendedItems.categories[1].children[3].maxPerTrip) {
-  //     this.recommendedItems.categories[1].children[3].amount++; // Casual Trousers
-  //   }
-  //   if (this.recommendedItems.categories[1].children[5].amount < this.recommendedItems.categories[1].children[5].maxPerTrip) {
-  //     this.recommendedItems.categories[1].children[5].amount++; // Slippers
-  //   }
+      checkRecommendationForItem(Items.TROUSERS, recommendation);
+      checkRecommendationForItem(Items.TSHIRT, recommendation);
+      checkRecommendationForItem(Items.CASUALTSHIRT, recommendation);
+      checkRecommendationForItem(Items.CASUALTROUSERS, recommendation);
+      // shirt,suit,formal shoes,towel, tracksuit?
 
-  //   if (weather.list[1].main.temp < 15) {
-  //     if (this.recommendedItems.categories[0].children[2].amount < this.recommendedItems.categories[0].children[2].maxPerTrip) {
-  //       this.recommendedItems.categories[0].children[2].amount++; // Blouse
-  //     }
-  //   }
-  //   if (weather.list[1].main.temp < 8) {
-  //     if (this.recommendedItems.categories[0].children[5].amount < this.recommendedItems.categories[0].children[5].maxPerTrip) {
-  //       this.recommendedItems.categories[0].children[5].amount++; // Jacket
-  //     }
-  //   }
-  //   if (weather.list[1].main.temp < 0) {
-  //     if (this.recommendedItems.categories[0].children[6].amount < this.recommendedItems.categories[0].children[6].maxPerTrip) {
-  //       this.recommendedItems.categories[0].children[6].amount++; // Winter Jacket
-  //     }
-  //     if (this.recommendedItems.categories[0].children[8].amount < this.recommendedItems.categories[0].children[8].maxPerTrip) {
-  //       this.recommendedItems.categories[0].children[8].amount++; // Gloves
-  //     }
-  //     if (this.recommendedItems.categories[0].children[9].amount < this.recommendedItems.categories[0].children[9].maxPerTrip) {
-  //       this.recommendedItems.categories[0].children[9].amount++; // Winter Boots
-  //     }
-  //   }
-  //   if (weather.list[1].main.temp < 5) {
-  //     if (this.recommendedItems.categories[0].children[7].amount < this.recommendedItems.categories[0].children[7].maxPerTrip) {
-  //       this.recommendedItems.categories[0].children[7].amount++; // Winter Cap
-  //     }
-  //   }
-  //   if (weather.list[1].main.temp > 15) {
-  //     if (this.recommendedItems.categories[0].children[1].amount < this.recommendedItems.categories[0].children[1].maxPerTrip) {
-  //       this.recommendedItems.categories[0].children[1].amount++; // T-shirt
-  //     }
-  //     if (this.recommendedItems.categories[1].children[4].amount < this.recommendedItems.categories[1].children[4].maxPerTrip) {
-  //       this.recommendedItems.categories[1].children[4].amount++; // Shorts
-  //     }
-  //     if (this.recommendedItems.categories[1].children[5].amount < this.recommendedItems.categories[1].children[5].maxPerTrip) {
-  //       this.recommendedItems.categories[1].children[5].amount++; // Slippers
-  //     }
-  //   }
-  //   console.log(weather.list[1]);
-  //   console.log(this.recommendedItems);
-  // }
+      if (weather.main.temp < 15) {
+        checkRecommendationForItem(Items.BLOUSE, recommendation);
+      }
+      if (weather.main.temp < 8) {
+        checkRecommendationForItem(Items.JACKET, recommendation);
+      }
+      if (weather.main.temp < 0) {
+        checkRecommendationForItem(Items.WINTERJACKET, recommendation);
+        checkRecommendationForItem(Items.GLOVES, recommendation);
+        checkRecommendationForItem(Items.WINTERBOOTS, recommendation);
+      }
+      if (weather.main.temp < 5) {
+        checkRecommendationForItem(Items.WINTERCAP, recommendation);
+      }
+      if (weather.main.temp > 15) {
+        checkRecommendationForItem(Items.TSHIRT, recommendation);
+        checkRecommendationForItem(Items.CASUALTSHIRT, recommendation);
+        checkRecommendationForItem(Items.SHORTS, recommendation);
+        if (weather.weather[0].main === 'Clear') {
+          checkRecommendationForItem(Items.SUNGLASSES, recommendation);
+        }
+      }
+      if (weather.weather[0].main === 'Thunderstorm') {
+        checkRecommendationForItem(Items.BLOUSE, recommendation);
+        checkRecommendationForItem(Items.JACKET, recommendation);
+        checkRecommendationForItem(Items.WINTERCAP, recommendation);
+        checkRecommendationForItem(Items.GLOVES, recommendation);
+        checkRecommendationForItem(Items.UMBRELLA, recommendation);
+        checkRecommendationForItem(Items.RAINPROOF, recommendation);
+      }
+      if (weather.weather[0].main === 'Rain') {
+        checkRecommendationForItem(Items.BLOUSE, recommendation);
+        checkRecommendationForItem(Items.JACKET, recommendation);
+        checkRecommendationForItem(Items.UMBRELLA, recommendation);
+        checkRecommendationForItem(Items.RAINPROOF, recommendation);
+      }
+      if (weather.weather[0].main === 'Snow') {
+        checkRecommendationForItem(Items.BLOUSE, recommendation);
+        checkRecommendationForItem(Items.JACKET, recommendation);
+        checkRecommendationForItem(Items.WINTERCAP, recommendation);
+        checkRecommendationForItem(Items.GLOVES, recommendation);
+        checkRecommendationForItem(Items.WINTERJACKET, recommendation);
+        checkRecommendationForItem(Items.WINTERBOOTS, recommendation);
+      }
+    }
+    console.log(recommendation);
+  }
 
   getTravels() {
-    console.log(this.recommendedItems);
     this.travelService.getTravels().subscribe(travels => {
       this.travels = travels.filter(travel =>
         (((travel.startDate.seconds * 1000) - this.today.getTime() < 86400)
@@ -130,15 +107,14 @@ export class CheckRecommendationComponent implements OnInit {
 
   getWeather(travel: Travel) {
     this.weatherService.getWeather(travel).subscribe((res: HttpResponse<Weather>) => {
-        this.weather = res.body as Weather;
-        console.log(this.weather);
-        for (const i of this.weather.list) {
-          if (i.dt_txt.includes('15:00:00')) {
-            this.onePerDayWeather.push(i);
-          }
+      this.weather = res.body as Weather;
+      for (const time of this.weather.list) {
+        if (time.dt_txt.includes('15:00:00')) {
+          this.onePerDayWeather.push(time);
         }
-        console.log(this.onePerDayWeather);
-      },
+      }
+      this.checkRecommendation(this.onePerDayWeather);
+    },
       error => {
         this.errorHandler(error);
       });
@@ -148,4 +124,6 @@ export class CheckRecommendationComponent implements OnInit {
     return throwError(error.message || 'server Error');
   }
 }
+
+
 
