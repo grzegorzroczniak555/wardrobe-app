@@ -100,8 +100,8 @@ export class CheckRecommendationComponent implements OnInit {
   getTravels() {
     this.travelService.getTravels().subscribe(travels => {
       this.travels = travels.filter(travel =>
-        (((travel.startDate.seconds * 1000) - this.today.getTime() < 86400)
-          && ((travel.startDate.seconds * 1000) - this.today.getTime() > -172800000)));
+        (((travel.startDate.seconds * 1000) - this.today.getTime() < 172800000)
+          && ((travel.startDate.seconds * 1000) - this.today.getTime() > -86400)));
     });
   }
 
@@ -109,10 +109,14 @@ export class CheckRecommendationComponent implements OnInit {
     this.weatherService.getWeather(travel).subscribe((res: HttpResponse<Weather>) => {
       this.weather = res.body as Weather;
       for (const time of this.weather.list) {
-        if (time.dt_txt.includes('15:00:00')) {
+        if (time.dt_txt.includes('15:00:00')
+        && (travel.startDate.seconds < time.dt
+        && (travel.endDate.seconds >= time.dt) )) {
           this.onePerDayWeather.push(time);
         }
       }
+      console.log(this.onePerDayWeather);
+      console.log(travel.startDate);
       this.checkRecommendation(this.onePerDayWeather);
     },
       error => {
