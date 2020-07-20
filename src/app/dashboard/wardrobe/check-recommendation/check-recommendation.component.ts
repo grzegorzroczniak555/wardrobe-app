@@ -1,13 +1,14 @@
-import { Recommendation, checkRecommendationForItem } from './../item.model';
-import { Component, OnInit } from '@angular/core';
-import { Travel } from '../../travels/travel.model';
-import { TravelService } from '../../travels/travel.service';
-import { WeatherService } from '../../../weather-api/weather.service';
-import { Weather } from '../../../weather-api/weather.model';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
-import { items } from '../items';
-import { Items } from '../item-group.model';
+import {Recommendation, checkRecommendationForItem} from './../item.model';
+import {Component, OnInit} from '@angular/core';
+import {Travel} from '../../travels/travel.model';
+import {TravelService} from '../../travels/travel.service';
+import {WeatherService} from '../../../weather-api/weather.service';
+import {Weather} from '../../../weather-api/weather.model';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {throwError} from 'rxjs';
+import {Items} from '../item-group.model';
+import {MatDialog} from '@angular/material/dialog';
+import {RecommendationDialogComponent} from './recommendation-dialog/recommendation-dialog.component';
 
 @Component({
   selector: 'app-check-recommendation',
@@ -17,13 +18,13 @@ import { Items } from '../item-group.model';
 export class CheckRecommendationComponent implements OnInit {
 
   travels: Travel[] = [];
-  recommendedItems = items;
   public onePerDayWeather = [];
   private weather: Weather;
   private today = new Date();
 
   constructor(private travelService: TravelService,
-              private weatherService: WeatherService) {
+              private weatherService: WeatherService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -94,7 +95,7 @@ export class CheckRecommendationComponent implements OnInit {
         checkRecommendationForItem(Items.WINTERBOOTS, recommendation);
       }
     }
-    console.log(recommendation);
+    this.openDialog(recommendation);
   }
 
   getTravels() {
@@ -107,18 +108,16 @@ export class CheckRecommendationComponent implements OnInit {
 
   getWeather(travel: Travel) {
     this.weatherService.getWeather(travel).subscribe((res: HttpResponse<Weather>) => {
-      this.weather = res.body as Weather;
-      for (const time of this.weather.list) {
-        if (time.dt_txt.includes('15:00:00')
-        && (travel.startDate.seconds < time.dt
-        && (travel.endDate.seconds >= time.dt) )) {
-          this.onePerDayWeather.push(time);
+        this.weather = res.body as Weather;
+        for (const time of this.weather.list) {
+          if (time.dt_txt.includes('15:00:00')
+            && (travel.startDate.seconds < time.dt
+              && (travel.endDate.seconds >= time.dt))) {
+            this.onePerDayWeather.push(time);
+          }
         }
-      }
-      console.log(this.onePerDayWeather);
-      console.log(travel.startDate);
-      this.checkRecommendation(this.onePerDayWeather);
-    },
+        this.checkRecommendation(this.onePerDayWeather);
+      },
       error => {
         this.errorHandler(error);
       });
@@ -126,6 +125,13 @@ export class CheckRecommendationComponent implements OnInit {
 
   errorHandler(error: HttpErrorResponse) {
     return throwError(error.message || 'server Error');
+  }
+
+  openDialog(recommendation: Recommendation): void {
+    this.dialog.open(RecommendationDialogComponent, {
+      width: '350px',
+      data: recommendation
+    });
   }
 }
 
