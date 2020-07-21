@@ -5,5 +5,6 @@ export class Travel {
   constructor(
     public destination: string,
     public startDate: Timestamp,
-    public endDate: Timestamp) {}
+    public endDate: Timestamp,
+    public id?: string ) {}
 }

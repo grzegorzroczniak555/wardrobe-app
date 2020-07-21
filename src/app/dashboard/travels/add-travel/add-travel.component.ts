@@ -55,6 +55,11 @@ export class AddTravelComponent implements OnInit {
     });
   }
 
+  deleteTravel(travel) {
+    this.travelService.deleteTravel(travel)
+    console.log('delete funct works');
+  }
+
   private addTravelSnackBar(message: string) {
     this.snackBar.open(message, '', {
       duration: 2000,
