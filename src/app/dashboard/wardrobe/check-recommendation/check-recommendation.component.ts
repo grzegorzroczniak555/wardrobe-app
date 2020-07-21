@@ -9,6 +9,8 @@ import {throwError} from 'rxjs';
 import {Items} from '../item-group.model';
 import {MatDialog} from '@angular/material/dialog';
 import {RecommendationDialogComponent} from './recommendation-dialog/recommendation-dialog.component';
+import {RecommendationService} from './recommendation.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-check-recommendation',
@@ -17,6 +19,7 @@ import {RecommendationDialogComponent} from './recommendation-dialog/recommendat
 })
 export class CheckRecommendationComponent implements OnInit {
 
+  readonly successNotificationMessage = 'Recommendation has been created!';
   travels: Travel[] = [];
   public onePerDayWeather = [];
   private weather: Weather;
@@ -24,6 +27,7 @@ export class CheckRecommendationComponent implements OnInit {
 
   constructor(private travelService: TravelService,
               private weatherService: WeatherService,
+              private recommendationService: RecommendationService,
               public dialog: MatDialog) {
   }
 
@@ -95,7 +99,10 @@ export class CheckRecommendationComponent implements OnInit {
         checkRecommendationForItem(Items.WINTERBOOTS, recommendation);
       }
     }
-    this.openDialog(recommendation);
+    const rec = recommendation.recommendations.map((obj) => { return Object.assign({}, obj)});
+    this.recommendationService.addRecommendation(rec).then(() => {
+      this.openDialog(recommendation);
+    });
   }
 
   getTravels() {
