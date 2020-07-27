@@ -13,14 +13,23 @@
   <ul class="list-group" *ngFor="let travel of travels">
     <li class="list-group-item ml-3 mb-3
       tab-content d-flex justify-content-between flex-column align-items-start align-content-center">
-        <span> Destination: <b>{{travel.destination}}</b></span>
-        <span> Start Date: <b>{{travel.startDate.seconds * 1000 | date: 'fullDate'}}</b></span>
-        <span> End Date: <b>{{travel.endDate.seconds * 1000 | date: 'fullDate'}}</b></span>
+      <span> Destination: <b>{{travel.destination}}</b></span>
+      <span> Start Date: <b>{{travel.startDate.seconds * 1000 | date: 'fullDate'}}</b></span>
+      <span> End Date: <b>{{travel.endDate.seconds * 1000 | date: 'fullDate'}}</b></span>
+      <div *ngIf="travel.recommendation.length === 0">
         <button mat-raised-button color="warn" class="button mt-3 ml-4"
                 matTooltip="Check recommendation"
                 (click)="getWeather(travel)">
-                Check recommendation
+          Check recommendation
         </button>
+      </div>
+        <div *ngIf="travel.recommendation.length > 0">
+          <button mat-stroked-button color="primary" class="button mt-3 ml-4"
+                  matTooltip="Show recommendation"
+                  (click)="openDialog(travel.recommendation)">
+            Show recommendation
+          </button>
+        </div>
     </li>
   </ul>
 

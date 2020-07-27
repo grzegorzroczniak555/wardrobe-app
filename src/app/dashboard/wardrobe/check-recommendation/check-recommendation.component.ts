@@ -1,4 +1,4 @@
-import {Recommendation, checkRecommendationForItem} from './../item.model';
+import {Recommendation, checkRecommendationForItem, ItemRecommendation} from './../item.model';
 import {Component, OnInit} from '@angular/core';
 import {Travel} from '../../travels/travel.model';
 import {TravelService} from '../../travels/travel.service';
@@ -35,7 +35,7 @@ export class CheckRecommendationComponent implements OnInit {
     this.getTravels();
   }
 
-  checkRecommendation = (onePerDayWeather) => {
+  checkRecommendation = (onePerDayWeather, travel) => {
     const recommendation = new Recommendation();
 
     checkRecommendationForItem(Items.TROUSERS, recommendation);
@@ -100,8 +100,8 @@ export class CheckRecommendationComponent implements OnInit {
       }
     }
     const rec = recommendation.recommendations.map((obj) => { return Object.assign({}, obj)});
-    this.recommendationService.addRecommendation(rec).then(() => {
-      this.openDialog(recommendation);
+    this.recommendationService.upsert(rec, travel).then(() => {
+      this.openDialog(recommendation.recommendations);
     });
   }
 
@@ -123,7 +123,7 @@ export class CheckRecommendationComponent implements OnInit {
             this.onePerDayWeather.push(time);
           }
         }
-        this.checkRecommendation(this.onePerDayWeather);
+        this.checkRecommendation(this.onePerDayWeather, travel);
       },
       error => {
         this.errorHandler(error);
@@ -134,7 +134,7 @@ export class CheckRecommendationComponent implements OnInit {
     return throwError(error.message || 'server Error');
   }
 
-  openDialog(recommendation: Recommendation): void {
+  openDialog(recommendation: ItemRecommendation[]): void {
     this.dialog.open(RecommendationDialogComponent, {
       width: '350px',
       data: recommendation

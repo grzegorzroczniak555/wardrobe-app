@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Recommendation} from '../../item.model';
+import {ItemRecommendation, Recommendation} from '../../item.model';
 
 @Component({
   selector: 'app-recommendation-dialog',
@@ -11,7 +11,7 @@ export class RecommendationDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<RecommendationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Recommendation) {
+    @Inject(MAT_DIALOG_DATA) public data: ItemRecommendation[]) {
   }
 
   onNoClick(): void {
