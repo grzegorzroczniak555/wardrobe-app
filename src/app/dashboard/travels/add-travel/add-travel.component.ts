@@ -55,8 +55,8 @@ export class AddTravelComponent implements OnInit {
     });
   }
 
-  deleteTravel(travel) {
-    this.travelService.deleteTravel(travel)
+  deleteTravel(travel: Travel) {
+    this.travelService.deleteTravel(travel.id);
     console.log('delete funct works');
   }
 
