@@ -24,19 +24,22 @@ export class TravelService {
       this.userId = user.uid;
       this.travelsCollection = this.afs.collection<Travel>(`${this.COLLECTION_NAME}/${this.userId}/${this.COLLECTION_NAME}`);
     });
+    // this.travels = this.afs.collection(`${this.COLLECTION_NAME}/${this.userId}/${this.COLLECTION_NAME}`)
   }
 
   getTravels(): Observable<Travel[]> {
-    return this.afs.collection<Travel>(`${this.COLLECTION_NAME}/${this.userId}/${this.COLLECTION_NAME}`).valueChanges();
-    this.travels = this.afs.collection(`${this.COLLECTION_NAME}/${this.userId}/${this.COLLECTION_NAME}`).snapshotChanges().pipe(
+    return this.afs.collection<Travel>(`${this.COLLECTION_NAME}/${this.userId}/${this.COLLECTION_NAME}`).snapshotChanges().pipe(
       map(changes => {
-      return changes.map(a => {
-        const data = a.payload.doc.data() as Travel;
-        data.id = a.payload.doc.id;
-        console.log(data.id);
-        return {id: data.id};
-      });
-    }));
+        return changes.map(a => {
+          const data = a.payload.doc.data() as Travel;
+          data.id = a.payload.doc.id;
+          return {
+            destination: data.destination,
+            startDate: data.startDate,
+            endDate: data.endDate,
+            id: data.id};
+        });
+      }));
   }
 
   addTravel(travel: Travel): Promise<DocumentReference> {
@@ -44,7 +47,6 @@ export class TravelService {
   }
 
   deleteTravel(id: string) {
-    console.log(id);
     this.itemDoc = this.afs.doc(`${this.COLLECTION_NAME}/${this.userId}/${this.COLLECTION_NAME}/${id}`);
     this.itemDoc.delete();
   }
