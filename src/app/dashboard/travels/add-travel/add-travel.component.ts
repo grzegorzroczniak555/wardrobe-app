@@ -11,7 +11,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class AddTravelComponent implements OnInit {
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
-  readonly successNotificationMessage = 'Travel has been added!';
+  readonly successAddNotificationMessage = 'Travel has been added!';
+  readonly successDeleteNotificationMessage = 'Travel has been deleted!';
   travelForm = new FormGroup({
     destination: new FormControl('', [
       Validators.minLength(3),
@@ -48,19 +49,20 @@ export class AddTravelComponent implements OnInit {
     const destination = this.travelForm.get('destination').value;
     const startDate = this.travelForm.get('startDate').value;
     const endDate = this.travelForm.get('endDate').value;
-    const travel = new Travel(destination, startDate, endDate);
+    const id = '';
+    const travel = new Travel(destination, startDate, endDate, id);
     this.travelService.addTravel(travel).then(() => {
       this.formDirective.resetForm();
-      this.addTravelSnackBar(this.successNotificationMessage);
+      this.ShowSnackBar(this.successAddNotificationMessage);
     });
   }
 
   deleteTravel(travel: Travel) {
     this.travelService.deleteTravel(travel.id);
-    console.log('delete funct works');
+    this.ShowSnackBar(this.successDeleteNotificationMessage);
   }
 
-  private addTravelSnackBar(message: string) {
+  private ShowSnackBar(message: string) {
     this.snackBar.open(message, '', {
       duration: 2000,
     });
