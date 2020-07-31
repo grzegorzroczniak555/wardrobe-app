@@ -58,8 +58,9 @@ export class AddTravelComponent implements OnInit {
   }
 
   deleteTravel(travel: Travel) {
-    this.travelService.deleteTravel(travel.id);
-    this.ShowSnackBar(this.successDeleteNotificationMessage);
+    this.travelService.deleteTravel(travel.id).then(() => {
+      this.ShowSnackBar(this.successDeleteNotificationMessage);
+    });
   }
 
   private ShowSnackBar(message: string) {

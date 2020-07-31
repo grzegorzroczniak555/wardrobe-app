@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ItemService} from '../item.service';
 import {Item} from '../item.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Travel} from '../../travels/travel.model';
 
 @Component({
   selector: 'app-add-item',
@@ -11,7 +12,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./add-item.component.scss']
 })
 export class AddItemComponent implements OnInit {
-  readonly successNotificationMessage = 'Item has been added!';
+  readonly successAddNotificationMessage = 'Item has been added!';
+  readonly successDeleteNotificationMessage = 'Item has been deleted!';
   itemForm = new FormGroup( {
     name:  new FormControl('', Validators.required),
     amount: new FormControl('', [
@@ -46,13 +48,20 @@ export class AddItemComponent implements OnInit {
 upsert() {
     const name = this.itemForm.get('name').value;
     const amount = this.itemForm.get('amount').value;
-    const item = new Item(name, amount);
+    const id = '';
+    const item = new Item(name, amount, id);
     this.itemService.upsert(item).then(() => {
-      this.addTravelSnackBar(this.successNotificationMessage);
+      this.ShowSnackBar(this.successAddNotificationMessage);
     });
   }
 
-  private addTravelSnackBar(message: string) {
+  deleteItem(item: Item) {
+    this.itemService.deleteItem(item).then(() => {
+      this.ShowSnackBar(this.successDeleteNotificationMessage);
+    });
+  }
+
+  private ShowSnackBar(message: string) {
     this.snackBar.open(message, '', {
       duration: 2000,
     });

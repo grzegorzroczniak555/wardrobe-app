@@ -12,10 +12,9 @@ export class TravelService {
 
   readonly COLLECTION_NAME = 'travels';
 
-  itemDoc: AngularFirestoreDocument<Travel>;
+  private itemDoc: AngularFirestoreDocument<Travel>;
   private travelsCollection: AngularFirestoreCollection<Travel>;
   private userId: string;
-  travels: Observable<{id: string}[]>;
 
   constructor(private afs: AngularFirestore,
               private authService: AuthService) {
@@ -24,7 +23,6 @@ export class TravelService {
       this.userId = user.uid;
       this.travelsCollection = this.afs.collection<Travel>(`${this.COLLECTION_NAME}/${this.userId}/${this.COLLECTION_NAME}`);
     });
-    // this.travels = this.afs.collection(`${this.COLLECTION_NAME}/${this.userId}/${this.COLLECTION_NAME}`)
   }
 
   getTravels(): Observable<Travel[]> {
@@ -48,7 +46,7 @@ export class TravelService {
 
   deleteTravel(id: string) {
     this.itemDoc = this.afs.doc(`${this.COLLECTION_NAME}/${this.userId}/${this.COLLECTION_NAME}/${id}`);
-    this.itemDoc.delete();
+    return this.itemDoc.delete();
   }
 
 }
