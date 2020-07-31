@@ -55,7 +55,11 @@ export class ItemService {
 
   deleteItem(item: Item) {
     item.amount --;
-    return this.afs.doc(`${this.COLLECTION_NAME}/${item.id}`).update(Object.assign({}, item));
+    if (item.amount > 0) {
+      return this.afs.doc(`${this.COLLECTION_NAME}/${item.id}`).update(Object.assign({}, item));
+    } else {
+      return this.afs.doc(`${this.COLLECTION_NAME}/${item.id}`).delete();
+    }
   }
 
 
