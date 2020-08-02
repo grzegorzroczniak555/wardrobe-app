@@ -1,6 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {ItemRecommendation, Recommendation} from '../../item.model';
+import {Recommendation} from '../../item.model';
+import Timestamp = firebase.firestore.Timestamp;
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-recommendation-dialog',
@@ -9,9 +11,12 @@ import {ItemRecommendation, Recommendation} from '../../item.model';
 })
 export class RecommendationDialogComponent implements OnInit {
 
+  public recommendationDate: Timestamp;
+
   constructor(
     public dialogRef: MatDialogRef<RecommendationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ItemRecommendation[]) {
+    @Inject(MAT_DIALOG_DATA) public data: Recommendation) {
+    this.recommendationDate = data.recommendationDate;
   }
 
   onNoClick(): void {

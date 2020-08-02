@@ -1,4 +1,4 @@
-import {Recommendation, checkRecommendationForItem, ItemRecommendation} from './../item.model';
+import {Recommendation, checkRecommendationForItem} from './../item.model';
 import {Component, OnInit} from '@angular/core';
 import {Travel} from '../../travels/travel.model';
 import {TravelService} from '../../travels/travel.service';
@@ -10,7 +10,8 @@ import {Items} from '../item-group.model';
 import {MatDialog} from '@angular/material/dialog';
 import {RecommendationDialogComponent} from './recommendation-dialog/recommendation-dialog.component';
 import {RecommendationService} from './recommendation.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import Timestamp = firebase.firestore.Timestamp;
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-check-recommendation',
@@ -19,11 +20,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class CheckRecommendationComponent implements OnInit {
 
-  readonly successNotificationMessage = 'Recommendation has been created!';
   travels: Travel[] = [];
   public onePerDayWeather = [];
   private weather: Weather;
   private today = new Date();
+  recommendation = new Recommendation();
 
   constructor(private travelService: TravelService,
               private weatherService: WeatherService,
@@ -99,9 +100,10 @@ export class CheckRecommendationComponent implements OnInit {
         checkRecommendationForItem(Items.WINTERBOOTS, recommendation);
       }
     }
-    const rec = recommendation.recommendations.map((obj) => { return Object.assign({}, obj)});
+    const rec = recommendation;
+    rec.recommendationDate = Timestamp.now();
     this.recommendationService.upsert(rec, travel).then(() => {
-      this.openDialog(recommendation.recommendations);
+      this.openDialog(recommendation);
     });
   }
 
@@ -134,7 +136,7 @@ export class CheckRecommendationComponent implements OnInit {
     return throwError(error.message || 'server Error');
   }
 
-  openDialog(recommendation: ItemRecommendation[]): void {
+  openDialog(recommendation: Recommendation): void {
     this.dialog.open(RecommendationDialogComponent, {
       width: '350px',
       data: recommendation

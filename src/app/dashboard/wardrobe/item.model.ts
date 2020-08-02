@@ -1,5 +1,7 @@
 import { items } from './items';
 import { Items } from './item-group.model';
+import * as firebase from 'firebase';
+import Timestamp = firebase.firestore.Timestamp;
 
 export class Item {
   constructor(
@@ -14,6 +16,7 @@ export class ItemRecommendation {
 
 export class Recommendation {
   recommendations: ItemRecommendation[] = [];
+  public recommendationDate?: Timestamp;
 }
 
 export const checkRecommendationForItem = (item: Items, recommendation: Recommendation) => {

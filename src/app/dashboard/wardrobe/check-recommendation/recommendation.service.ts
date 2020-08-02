@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, DocumentReference} from '@angular/fire/firestore';
 import {AuthService} from '../../../core/auth.service';
-import {Item, ItemRecommendation, Recommendation} from '../item.model';
+import {Recommendation} from '../item.model';
 import {Travel} from '../../travels/travel.model';
 
 @Injectable({
@@ -23,14 +23,21 @@ export class RecommendationService {
     });
   }
 
-  async upsert(recommendation: ItemRecommendation[], travel: Travel): Promise<DocumentReference | void> {
+  async upsert(recommendation: Recommendation, travel: Travel): Promise<DocumentReference | void> {
     const query = this.afs.collectionGroup('travels', ref => ref.where('destination', '==', `${travel.destination}`));
     const promise = await query.get().toPromise();
     const docs = promise.docs;
     if (docs.length > 0) {
       const itemDoc = docs[0];
       const retrievedTravel = itemDoc.data() as Travel;
-      retrievedTravel.recommendation = recommendation;
+      retrievedTravel.recommendation.recommendations = recommendation.recommendations;
+      retrievedTravel.recommendation.recommendationDate = recommendation.recommendationDate;
+      const itemRec = retrievedTravel.recommendation.recommendations.map((obj) => {return Object.assign({}, obj)});
+      const rec: Recommendation = {
+        recommendations: itemRec,
+        recommendationDate: retrievedTravel.recommendation.recommendationDate
+       }
+      retrievedTravel.recommendation = rec;
       return this.afs.collection(`${this.COLLECTION_NAME}/${this.userId}/${this.COLLECTION_NAME}`).doc(itemDoc.id)
         .update(Object.assign({}, retrievedTravel));
     }
