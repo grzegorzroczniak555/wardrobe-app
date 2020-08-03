@@ -25,6 +25,7 @@ export class CheckRecommendationComponent implements OnInit {
   private weather: Weather;
   private today = new Date();
   recommendation = new Recommendation();
+  showMouseSpinner: boolean = false;
 
   constructor(private travelService: TravelService,
               private weatherService: WeatherService,
@@ -116,6 +117,7 @@ export class CheckRecommendationComponent implements OnInit {
   }
 
   getWeather(travel: Travel) {
+    this.showMouseSpinner = true;
     this.weatherService.getWeather(travel).subscribe((res: HttpResponse<Weather>) => {
         this.weather = res.body as Weather;
         for (const time of this.weather.list) {
