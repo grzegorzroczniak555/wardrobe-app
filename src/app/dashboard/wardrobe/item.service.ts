@@ -1,14 +1,17 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection, DocumentReference} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference} from '@angular/fire/firestore';
 import {Item} from './item.model';
 import {AuthService} from '../../core/auth.service';
 import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {Travel} from '../travels/travel.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
 
+  private itemDoc: AngularFirestoreDocument<Travel>;
   private itemsCollection: AngularFirestoreCollection<Item>;
   private COLLECTION_NAME: string;
   private userId: string;
@@ -23,7 +26,17 @@ export class ItemService {
   }
 
   getItems(): Observable<Item[]> {
-    return this.afs.collection<Item>(this.COLLECTION_NAME).valueChanges();
+    return this.afs.collection<Item>(this.COLLECTION_NAME).snapshotChanges().pipe(
+      map(changes => {
+        return changes.map(a => {
+          const data = a.payload.doc.data() as Item;
+          data.id = a.payload.doc.id;
+          return {
+            name: data.name,
+            amount: data.amount,
+            id: data.id};
+        });
+      }));
   }
 
   async upsert(item: Item): Promise<DocumentReference | void> {
@@ -37,6 +50,15 @@ export class ItemService {
       return this.afs.collection(this.COLLECTION_NAME).doc(itemDoc.id).update(Object.assign({}, retrievedItem));
     } else {
       return this.itemsCollection.add(Object.assign({}, item));
+    }
+  }
+
+  deleteItem(item: Item) {
+    item.amount --;
+    if (item.amount > 0) {
+      return this.afs.doc(`${this.COLLECTION_NAME}/${item.id}`).update(Object.assign({}, item));
+    } else {
+      return this.afs.doc(`${this.COLLECTION_NAME}/${item.id}`).delete();
     }
   }
 

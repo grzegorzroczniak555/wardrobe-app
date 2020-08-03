@@ -7,5 +7,6 @@ export class Travel {
     public destination: string,
     public startDate: Timestamp,
     public endDate: Timestamp,
+    public id?: string,
     public recommendation?: Recommendation) {}
 }

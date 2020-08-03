@@ -6,7 +6,8 @@ import Timestamp = firebase.firestore.Timestamp;
 export class Item {
   constructor(
     public name: string,
-    public amount?: number) {}
+    public amount?: number,
+    public id?: string) {}
 }
 
 export class ItemRecommendation {

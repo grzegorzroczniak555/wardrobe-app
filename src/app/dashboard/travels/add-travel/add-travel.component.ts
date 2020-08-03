@@ -14,7 +14,8 @@ import * as firebase from 'firebase';
 })
 export class AddTravelComponent implements OnInit {
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
-  readonly successNotificationMessage = 'Travel has been added!';
+  readonly successAddNotificationMessage = 'Travel has been added!';
+  readonly successDeleteNotificationMessage = 'Travel has been deleted!';
   travelForm = new FormGroup({
     destination: new FormControl('', [
       Validators.minLength(3),
@@ -52,6 +53,7 @@ export class AddTravelComponent implements OnInit {
     const destination = this.travelForm.get('destination').value;
     const startDate = this.travelForm.get('startDate').value;
     const endDate = this.travelForm.get('endDate').value;
+    const id = '';
     const recommendation = this.recommendation;
     const dateRec = new Timestamp(new Date().getSeconds(), new Date().getUTCSeconds());
     const itemRec = recommendation.recommendations.map((obj) => {return Object.assign({}, obj)});
@@ -59,14 +61,20 @@ export class AddTravelComponent implements OnInit {
       recommendations: itemRec,
       recommendationDate: dateRec
     }
-    const travel = new Travel(destination, startDate, endDate, rec);
+    const travel = new Travel(destination, startDate, endDate, id, rec);
     this.travelService.addTravel(travel).then(() => {
       this.formDirective.resetForm();
-      this.addTravelSnackBar(this.successNotificationMessage);
+      this.ShowSnackBar(this.successAddNotificationMessage);
     });
   }
 
-  private addTravelSnackBar(message: string) {
+  deleteTravel(travel: Travel) {
+    this.travelService.deleteTravel(travel.id).then(() => {
+      this.ShowSnackBar(this.successDeleteNotificationMessage);
+    });
+  }
+
+  private ShowSnackBar(message: string) {
     this.snackBar.open(message, '', {
       duration: 2000,
     });
