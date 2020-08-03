@@ -21,12 +21,13 @@ export class TravelService {
 
     this.authService.getUser().subscribe(user => {
       this.userId = user.uid;
-      this.travelsCollection = this.afs.collection<Travel>(`${this.COLLECTION_NAME}/${this.userId}/${this.COLLECTION_NAME}`);
+      this.travelsCollection = this.afs.collection<Travel>(`${this.COLLECTION_NAME}/${this.userId}/${this.COLLECTION_NAME}`,
+          ref => ref.orderBy('startDate', 'asc'));
     });
   }
 
   getTravels(): Observable<Travel[]> {
-    return this.afs.collection<Travel>(`${this.COLLECTION_NAME}/${this.userId}/${this.COLLECTION_NAME}`).snapshotChanges().pipe(
+    return this.travelsCollection.snapshotChanges().pipe(
       map(changes => {
         return changes.map(a => {
           const data = a.payload.doc.data() as Travel;
