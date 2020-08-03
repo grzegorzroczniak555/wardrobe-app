@@ -35,7 +35,8 @@ export class TravelService {
             destination: data.destination,
             startDate: data.startDate,
             endDate: data.endDate,
-            id: data.id};
+            id: data.id,
+            recommendation: data.recommendation};
         });
       }));
   }
