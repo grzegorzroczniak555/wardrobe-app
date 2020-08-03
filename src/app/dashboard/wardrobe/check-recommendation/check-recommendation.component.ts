@@ -9,6 +9,9 @@ import {throwError} from 'rxjs';
 import {Items} from '../item-group.model';
 import {MatDialog} from '@angular/material/dialog';
 import {RecommendationDialogComponent} from './recommendation-dialog/recommendation-dialog.component';
+import {RecommendationService} from './recommendation.service';
+import Timestamp = firebase.firestore.Timestamp;
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-check-recommendation',
@@ -21,9 +24,11 @@ export class CheckRecommendationComponent implements OnInit {
   public onePerDayWeather = [];
   private weather: Weather;
   private today = new Date();
+  recommendation = new Recommendation();
 
   constructor(private travelService: TravelService,
               private weatherService: WeatherService,
+              private recommendationService: RecommendationService,
               public dialog: MatDialog) {
   }
 
@@ -31,7 +36,7 @@ export class CheckRecommendationComponent implements OnInit {
     this.getTravels();
   }
 
-  checkRecommendation = (onePerDayWeather) => {
+  checkRecommendation = (onePerDayWeather, travel) => {
     const recommendation = new Recommendation();
 
     checkRecommendationForItem(Items.TROUSERS, recommendation);
@@ -95,7 +100,11 @@ export class CheckRecommendationComponent implements OnInit {
         checkRecommendationForItem(Items.WINTERBOOTS, recommendation);
       }
     }
-    this.openDialog(recommendation);
+    const rec = recommendation;
+    rec.recommendationDate = Timestamp.now();
+    this.recommendationService.upsert(rec, travel).then(() => {
+      this.openDialog(recommendation);
+    });
   }
 
   getTravels() {
@@ -116,7 +125,7 @@ export class CheckRecommendationComponent implements OnInit {
             this.onePerDayWeather.push(time);
           }
         }
-        this.checkRecommendation(this.onePerDayWeather);
+        this.checkRecommendation(this.onePerDayWeather, travel);
       },
       error => {
         this.errorHandler(error);

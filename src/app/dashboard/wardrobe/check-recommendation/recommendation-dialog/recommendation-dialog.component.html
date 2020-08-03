@@ -1,4 +1,5 @@
 <h1 class="add-travel-title ml-3 mt-2 mb-3 text-monospace font-weight-bold">You should take:</h1>
+<h2 class ="text-monospace font-weight-bold"> Checking time: <br> {{recommendationDate.toDate() | date: 'medium'}}</h2>
 <ul class="list-group">
   <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let recommendation of data.recommendations">
     {{recommendation.name}} <span class="badge badge-primary badge-pill"> {{recommendation.recommendedAmount}}</span>
