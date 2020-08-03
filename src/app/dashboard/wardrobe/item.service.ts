@@ -21,12 +21,12 @@ export class ItemService {
     this.authService.getUser().subscribe(user => {
       this.userId = user.uid;
       this.COLLECTION_NAME = `wardrobe/${this.userId}/item`;
-      this.itemsCollection = this.afs.collection<Item>(this.COLLECTION_NAME);
+      this.itemsCollection = this.afs.collection<Item>(this.COLLECTION_NAME, ref => ref.orderBy('name', 'asc'));
     });
   }
 
   getItems(): Observable<Item[]> {
-    return this.afs.collection<Item>(this.COLLECTION_NAME).snapshotChanges().pipe(
+    return this.itemsCollection.snapshotChanges().pipe(
       map(changes => {
         return changes.map(a => {
           const data = a.payload.doc.data() as Item;
