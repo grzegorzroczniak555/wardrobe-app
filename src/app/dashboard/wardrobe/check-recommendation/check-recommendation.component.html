@@ -16,7 +16,6 @@
       <span> Start Date: <b>{{travel.startDate.seconds * 1000 | date: 'fullDate'}}</b></span>
       <span> End Date: <b>{{travel.endDate.seconds * 1000 | date: 'fullDate'}}</b></span>
       <div *ngIf="travel.recommendation.recommendations.length === 0">
-        <span class="mouse-wait" *ngIf="showMouseSpinner === true"></span>
           <button mat-raised-button color="warn" class="button mt-3 ml-4"
                 matTooltip="Check recommendation"
                 (click)="getWeather(travel)">
