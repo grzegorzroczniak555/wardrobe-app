@@ -30,6 +30,7 @@ export class AddTravelComponent implements OnInit {
     ])
   });
 
+  showSpinner: boolean = true;
   travels: Travel[] = [];
   minDate: Date;
   recommendation: Recommendation = new Recommendation();
@@ -46,6 +47,7 @@ export class AddTravelComponent implements OnInit {
   getTravels() {
     this.travelService.getTravels().subscribe(travels => {
       this.travels = travels;
+      this.showSpinner = false;
     });
   }
 

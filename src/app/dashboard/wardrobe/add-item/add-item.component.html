@@ -29,6 +29,7 @@
     <p class="text-info"> Your wardrobe is empty, let's buy an item! </p>
     <i class="material-icons ml-1 mb-3">mood</i>
   </div>
+  <span class="loader d-flex ml-5" *ngIf="showSpinner"></span>
   <ul class="list-group" *ngFor="let item of items">
     <li class="list-group-item ml-3 mb-3 tab-content d-flex justify-content-between flex-column align-items-start align-content-center" *ngIf="item.amount > 0">
       <span> Name: <b>{{item.name}}</b></span><span> Amount: <b>{{item.amount}}</b></span>

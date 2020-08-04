@@ -24,6 +24,7 @@ export class AddItemComponent implements OnInit {
 
   items: Item[] = [];
   selectedOptions = getItemsSelectOptions();
+  showSpinner: boolean = true;
 
   readonly counterValue = 1;
   readonly counterStep = 1;
@@ -42,6 +43,7 @@ export class AddItemComponent implements OnInit {
   getItems() {
     this.itemService.getItems().subscribe(ownedItems => {
       this.items = ownedItems;
+      this.showSpinner = false;
     });
   }
 
