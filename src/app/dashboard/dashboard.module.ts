@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RecommendationDialogComponent } from './wardrobe/check-recommendation/recommendation-dialog/recommendation-dialog.component';
+import { HistoryTravelComponent } from './travels/history-travel/history-travel.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RecommendationDialogComponent } from './wardrobe/check-recommendation/r
     CheckRecommendationComponent,
     DashboardComponent,
     NavbarComponent,
-    RecommendationDialogComponent
+    RecommendationDialogComponent,
+    HistoryTravelComponent
   ],
   imports: [
     DashboardRoutingModule,

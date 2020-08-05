@@ -1,0 +1,15 @@
+<div class="container ml-3 mt-3">
+  <h1 class="add-travel-title ml-3 mt-2 text-monospace font-weight-bold mb-4"> History of your travels</h1>
+  <div *ngIf="travels.length === 0" class="ml-3 d-flex flex-row align-items-center">
+    <p class="text-info"> List of your history of travels is empty, let's plan a travel! </p>
+    <i class="material-icons ml-1 mb-3">mood</i>
+  </div>
+  <span class="loader d-flex ml-5" *ngIf="showSpinner"></span>
+  <ul class="list-group">
+    <li
+      class="list-group-item ml-3 mb-3 tab-content d-flex justify-content-between flex-column align-items-start align-content-center"
+      *ngFor="let travel of travels">
+      <span> Destination: <b>{{travel.destination}}</b></span><span> Start Date: <b>{{travel.startDate.seconds * 1000 | date: 'fullDate'}}</b></span><span> End Date: <b>{{travel.endDate.seconds * 1000 | date: 'fullDate'}}</b></span>
+    </li>
+  </ul>
+</div>
