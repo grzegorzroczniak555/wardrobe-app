@@ -85,7 +85,7 @@ export class AddTravelComponent implements OnInit {
 
   setMaxDate(date) {
     this.minDateForEnd =  new Date(date);
-    this.maxDateForEnd = date;
+    this.maxDateForEnd = new Date(date);
     if (date === null) {
       return 0;
     }
