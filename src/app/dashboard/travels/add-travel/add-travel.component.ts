@@ -1,5 +1,5 @@
 import {TravelService} from '../travel.service';
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {FormGroup, FormControl, Validators, FormGroupDirective} from '@angular/forms';
 import {Travel} from '../travel.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -14,6 +14,7 @@ import * as firebase from 'firebase';
 })
 export class AddTravelComponent implements OnInit {
   @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
+  @Output() setDate: EventEmitter<any> = new EventEmitter();
   readonly successAddNotificationMessage = 'Travel has been added!';
   readonly successDeleteNotificationMessage = 'Travel has been deleted!';
   travelForm = new FormGroup({
@@ -30,25 +31,31 @@ export class AddTravelComponent implements OnInit {
     ])
   });
 
-  showSpinner: boolean = true;
   travels: Travel[] = [];
-  minDate: Date;
+  today: Timestamp;
+  minDateForStart: Date;
+  minDateForEnd: Date;
+  maxDateForEnd: Date;
+  showSpinner: boolean = true;
   recommendation: Recommendation = new Recommendation();
 
   constructor(private travelService: TravelService,
               private snackBar: MatSnackBar) {
-    this.minDate = new Date();
+    this.minDateForStart = new Date();
+    this.minDateForStart.setDate(this.minDateForStart.getDate() + 1);
   }
 
   ngOnInit(): void {
+    this.today = Timestamp.now();
     this.getTravels();
   }
 
   getTravels() {
     this.travelService.getTravels().subscribe(travels => {
-      this.travels = travels;
-      this.showSpinner = false;
+      this.travels = travels.filter(travel =>
+        (travel.startDate.seconds >= this.today.seconds));
     });
+    this.showSpinner = false;
   }
 
   addTravel() {
@@ -74,6 +81,15 @@ export class AddTravelComponent implements OnInit {
     this.travelService.deleteTravel(travel.id).then(() => {
       this.ShowSnackBar(this.successDeleteNotificationMessage);
     });
+  }
+
+  setMaxDate(date) {
+    this.minDateForEnd =  new Date(date);
+    this.maxDateForEnd = date;
+    if (date === null) {
+      return 0;
+    }
+    this.maxDateForEnd.setDate(this.maxDateForEnd.getDate() + 4);
   }
 
   private ShowSnackBar(message: string) {
