@@ -26,7 +26,7 @@
 
                       <mat-form-field appearance="outline" class="mb-2 w-25">
                           <mat-label>Choose a start date</mat-label>
-                          <input matInput [matDatepicker]="pickerStart" formControlName="startDate" [min]="minDate">
+                          <input matInput [matDatepicker]="pickerStart" (ngModelChange)="setMaxDate($event)" formControlName="startDate" [min]="minDateForStart">
                           <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
                           <mat-datepicker #pickerStart></mat-datepicker>
                           <mat-error *ngIf="travelForm.get('startDate').invalid && (travelForm.get('startDate').dirty || travelForm.get('startDate').touched)">
@@ -34,14 +34,14 @@
                               You must choose a date.
                               </span>
                               <span *ngIf="travelForm.get('startDate').errors.matDatepickerMin">
-                                Start date must be on the same day or later than today's date.
+                                Start date must be later than today's date.
                               </span>
                           </mat-error>
                       </mat-form-field>
 
                       <mat-form-field appearance="outline" class="mb-2 w-25">
                           <mat-label>Choose a end date</mat-label>
-                          <input matInput [matDatepicker]="pickerEnd" formControlName="endDate" [min]="travelForm.get('startDate').value">
+                          <input matInput [matDatepicker]="pickerEnd" formControlName="endDate" [min]="minDateForEnd" [max]="maxDateForEnd">
                           <mat-datepicker-toggle class="datepicker-toggle" matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
                           <mat-datepicker #pickerEnd></mat-datepicker>
                           <mat-error *ngIf="travelForm.get('endDate').invalid && (travelForm.get('endDate').dirty || travelForm.get('endDate').touched)">

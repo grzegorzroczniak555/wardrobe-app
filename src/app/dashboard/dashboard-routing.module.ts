@@ -6,6 +6,7 @@ import { AddTravelComponent } from './travels/add-travel/add-travel.component';
 import { CheckRecommendationComponent } from './wardrobe/check-recommendation/check-recommendation.component';
 import { DashboardComponent } from './dashboard.component';
 import { ErrorComponent } from '../error-page/error.component';
+import { HistoryTravelComponent } from './travels/history-travel/history-travel.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'recommendations',
         component: CheckRecommendationComponent
+      },
+      {
+        path: 'history',
+        component: HistoryTravelComponent
       }
     ]
   },
