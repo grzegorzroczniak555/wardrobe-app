@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {AuthService} from '../../core/auth.service';
+import {MatDialog} from '@angular/material/dialog';
+import {AboutUsDialogComponent} from './about-us-dialog/about-us-dialog.component';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +11,10 @@ import {AuthService} from '../../core/auth.service';
 export class NavbarComponent implements OnInit {
   @Output() drawerToggle = new EventEmitter<void>();
 
-  constructor(public authService: AuthService) {
+  calendarIsEnabled = false;
+
+  constructor(public authService: AuthService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -19,4 +24,13 @@ export class NavbarComponent implements OnInit {
     this.drawerToggle.emit();
   }
 
+  calendarStatusChange() {
+    this.calendarIsEnabled = !this.calendarIsEnabled;
+  }
+
+  openDialog(): void {
+    this.dialog.open(AboutUsDialogComponent, {
+      width: '350px'
+    });
+  }
 }

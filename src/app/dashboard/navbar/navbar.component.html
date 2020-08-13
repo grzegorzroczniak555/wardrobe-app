@@ -7,13 +7,21 @@
   </div>
   <div class="d-flex flex-row align-items-center">
     <div class="d-flex flex-row align-items-center">
-      <mat-icon class="mt-0">calendar_today</mat-icon>
-      <a mat-list-item href="#">Calendar</a>
+      <div class="d-flex flex-column">
+        <button mat-button class="d-flex">
+          <mat-icon class="mt-0" (click)="calendarStatusChange()">calendar_today</mat-icon>
+          <a mat-list-item (click)="calendarStatusChange()">Calendar</a>
+        </button>
+      </div>
+      <div *ngIf="calendarIsEnabled">
+        <mat-calendar class="calendar"></mat-calendar>
+      </div>
     </div>
-
     <div class="d-flex flex-row align-items-center ml-2">
-      <mat-icon>assignment</mat-icon>
-      <a mat-list-item href="#">About us</a>
+      <button mat-button class="d-flex">
+        <mat-icon (click)="openDialog()">assignment</mat-icon>
+        <a mat-list-item (click)="openDialog()">About us</a>
+      </button>
     </div>
 
     <div class="d-flex flex-column align-items-center ml-2">
@@ -23,7 +31,8 @@
           <a mat-list-item>{{user.displayName}}</a>
         </button>
         <mat-menu #menu="matMenu">
-          <button class="logout-button" matTooltip="Logout" mat-menu-item (click)="authService.signOut()">Logout</button>
+          <button class="logout-button" matTooltip="Logout" mat-menu-item (click)="authService.signOut()">Logout
+          </button>
         </mat-menu>
       </div>
     </div>

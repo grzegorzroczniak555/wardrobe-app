@@ -1,13 +1,13 @@
   .sidenav .mat-toolbar {
       background: inherit;
   }
-  
+
   .mat-toolbar.mat-primary {
       position: sticky;
       top: 0;
       z-index: 1;
   }
-  
+
   .mat-toolbar a {
       font-size: 15px;
       display: inline-block;
@@ -15,7 +15,11 @@
       color: white;
       text-decoration: none;
   }
-  
+
+  .calendar {
+    margin-top: 220px;
+  }
+
   button:focus,
   button:active:focus,
   button.active:focus {
