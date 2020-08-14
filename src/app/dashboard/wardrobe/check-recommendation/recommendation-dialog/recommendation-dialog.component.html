@@ -1,10 +1,20 @@
-<h1 class="add-travel-title ml-3 mt-2 mb-3 text-monospace font-weight-bold">You should take:</h1>
-<h2 class ="text-monospace font-weight-bold"> Checking time: <br> {{recommendationDate.toDate() | date: 'medium'}}</h2>
+<h1 class="add-travel-title ml-3 mb-1 text-monospace font-weight-bold">You should take:</h1>
+<h3 class="text-monospace font-weight-bold"> Checking time: <br> {{recommendationDate.toDate() | date: 'medium'}}</h3>
 <ul class="list-group">
-  <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let recommendation of data.recommendations">
-    {{recommendation.name}} <span class="badge badge-primary badge-pill"> {{recommendation.recommendedAmount}}</span>
+  <li class="list-group-item d-flex align-items-center justify-content-between" *ngFor="let recommendation of data.recommendations">
+   <span> {{recommendation.name}} </span><span class="badge badge-primary badge-pill mr-3"> {{recommendation.recommendedAmount}}</span>
+    <span *ngIf="compareRecommendationWithWardrobe(recommendation, items) === false; else elseBlock">
+        <span class="material-icons" matTooltip="Not enough items in wardrobe!">
+          error
+        </span>
+    </span>
+    <ng-template #elseBlock>
+      <div class="material-icons" matTooltip="You have it!">
+        cloud_done
+      </div>
+    </ng-template>
   </li>
 </ul>
-<div mat-dialog-actions class="align-items-center">
+<div mat-dialog-actions class="justify-content-center">
   <button mat-button (click)="onNoClick()">OK, I have to prepare my baggage!</button>
 </div>
