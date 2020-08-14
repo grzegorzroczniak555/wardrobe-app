@@ -4,7 +4,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ItemService} from '../item.service';
 import {Item} from '../item.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {Travel} from '../../travels/travel.model';
 
 @Component({
   selector: 'app-add-item',
