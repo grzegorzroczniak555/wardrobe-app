@@ -12,6 +12,7 @@ import {RecommendationDialogComponent} from './recommendation-dialog/recommendat
 import {RecommendationService} from './recommendation.service';
 import Timestamp = firebase.firestore.Timestamp;
 import * as firebase from 'firebase';
+import {RecommendationErrorDialogComponent} from './recommendation-error-dialog/recommendation-error-dialog.component';
 
 @Component({
   selector: 'app-check-recommendation',
@@ -128,7 +129,7 @@ export class CheckRecommendationComponent implements OnInit {
         this.checkRecommendation(this.onePerDayWeather, travel);
       },
       error => {
-        this.errorHandler(error);
+        this.openErrorDialog();
       });
   }
 
@@ -140,6 +141,12 @@ export class CheckRecommendationComponent implements OnInit {
     this.dialog.open(RecommendationDialogComponent, {
       width: '350px',
       data: recommendation
+    });
+  }
+
+  openErrorDialog() {
+    this.dialog.open(RecommendationErrorDialogComponent, {
+      width: '350px',
     });
   }
 }
