@@ -10,8 +10,7 @@ import {RecommendationDialogComponent} from '../../wardrobe/check-recommendation
 })
 export class AboutUsDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<RecommendationDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Recommendation) { }
+  constructor(public dialogRef: MatDialogRef<AboutUsDialogComponent>) { }
 
   onNoClick(): void {
     this.dialogRef.close();
