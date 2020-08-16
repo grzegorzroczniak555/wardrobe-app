@@ -1,6 +1,6 @@
-<div class="container d-flex flex-column ml-3 mt-3">
-  <h1 class="add-travel-title ml-3 mt-2 mb-3 text-monospace font-weight-bold"> Add item to wardrobe</h1>
-
+<div class="d-flex flex-row justify-content-start">
+<div class="container d-flex flex-column ml-3 mt-3 mr-0">
+  <h1 class="add-travel-title ml-3 mt-2 mb-3 text-monospace font-weight-bold w-75"> Add item to wardrobe</h1>
   <form [formGroup]="itemForm" (ngSubmit)="upsert()" class="d-flex flex-column">
     <mat-form-field class="ml-3 w-25">
       <mat-label>Select item</mat-label>
@@ -24,7 +24,7 @@
             class="button ml-2 my-3" [disabled]="itemForm.invalid">Add Item
     </button>
   </form>
-  <h1 class="add-travel-title ml-3 mt-4 mb-3 text-monospace font-weight-bold"> Your wardrobe</h1>
+  <h1 class="add-travel-title ml-3 mt-4 mb-3 text-monospace font-weight-bold w-50"> Your wardrobe</h1>
   <div *ngIf="items.length === 0" class="ml-3 d-flex flex-row align-items-center">
     <p class="text-info"> Your wardrobe is empty, let's buy an item! </p>
     <i class="material-icons ml-1 mb-3">mood</i>
@@ -38,4 +38,6 @@
       </button>
     </li>
   </ul>
+</div>
+<img src="../assets/images/wardrobe.jpg" class="mt-3" alt="Wardrobe" height="300" width="250"/>
 </div>

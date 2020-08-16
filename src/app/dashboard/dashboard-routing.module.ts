@@ -7,12 +7,14 @@ import { CheckRecommendationComponent } from './wardrobe/check-recommendation/ch
 import { DashboardComponent } from './dashboard.component';
 import { ErrorComponent } from '../error-page/error.component';
 import { HistoryTravelComponent } from './travels/history-travel/history-travel.component';
+import {AuthGuard} from '../core/auth.guard';
 
 const routes: Routes = [
   {
     path: 'dashboard', component: DashboardComponent, children: [
       {
         path: 'travels',
+        canActivate: [AuthGuard],
         children: [
           {
             path: 'add',
@@ -22,6 +24,7 @@ const routes: Routes = [
       },
       {
         path: 'items',
+        canActivate: [AuthGuard],
         children: [
           {
             path: 'add',
@@ -31,10 +34,12 @@ const routes: Routes = [
       },
       {
         path: 'recommendations',
+        canActivate: [AuthGuard],
         component: CheckRecommendationComponent
       },
       {
         path: 'history',
+        canActivate: [AuthGuard],
         component: HistoryTravelComponent
       }
     ]

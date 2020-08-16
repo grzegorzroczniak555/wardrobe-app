@@ -28,11 +28,3 @@ export enum Items {
   RAINPROOF = 'Rainproof',
   TOWEL = 'Towel'
 }
-
-// import {Item} from './item.model';
-
-// export interface ItemGroup {
-//   disabled?: boolean;
-//   name: string;
-//   item: Item[];
-// }
