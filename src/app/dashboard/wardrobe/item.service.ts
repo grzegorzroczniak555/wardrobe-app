@@ -1,17 +1,15 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection, DocumentReference} from '@angular/fire/firestore';
 import {Item} from './item.model';
 import {AuthService} from '../../core/auth.service';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {Travel} from '../travels/travel.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
 
-  private itemDoc: AngularFirestoreDocument<Travel>;
   private itemsCollection: AngularFirestoreCollection<Item>;
   private COLLECTION_NAME: string;
   private userId: string;
@@ -61,6 +59,4 @@ export class ItemService {
       return this.afs.doc(`${this.COLLECTION_NAME}/${item.id}`).delete();
     }
   }
-
-
 }
